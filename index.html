@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aman Jain's Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/87ff035a14.js" crossorigin="anonymous"></script>
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <!--home-->
+    <div id = "home">
+        <div class="container">
+            <nav>
+                <a href="#home"><img src = "logo.png" class = "logo"></a>
+                <ul id="side-menu">
+                    <li><a href="#home" onclick="closemenu()">Home</a></li>
+                    <li><a href="#about" onclick="closemenu()">About</a></li>
+                    <li><a href="#work" onclick="closemenu()">Work</a></li>
+                    <li><a href="#contact" onclick="closemenu()">Contact</a></li>
+                    <i class="fa-solid fa-xmark" onclick="closemenu()"></i>
+                </ul>
+                <i class="fa-solid fa-bars" onclick="openmenu()"></i>
+            </nav>
+            <div class="header-text">
+                <p>Developer</p>
+                <h1>"Hi! I am <span>Aman Jain</span>!"</h1>
+            </div>
+        </div>
+    </div>
+
+    <!--about-->
+    <div id="about">
+        <div class="container">
+            <div class="row">
+                <div class="about-col-1">
+                    <img src="" alt="Meticulously organizing code, yet living in chaotic exploration.">
+                </div>
+                <div class="about-col-2">
+                    <h1 class="sub-title">About Me!</h1>
+                    <p>Hi! I am Aman Jain, an avid programmer. I guess you know that already since I made this website to prove that. However, I am so much more than just that. I love sports and it is my goal to have played every one of the sports that exist before the end of my life. Moreover, I love watching anime, reading books and writing my poems. If you'd like to check some out, you could always go over to my Instagram! That is all for now, but you can get to know me better over coffee or, perhaps, an interview?!</p>
+                    <div class="tab-titles">
+                        <p class="tab-links active-link" onclick="opentab('skills')">Skills</p>
+                        <p class="tab-links" onclick="opentab('work-exp')">Work</p>
+                        <p class="tab-links" onclick="opentab('hackathon')">Hackathons</p>
+                        <p class="tab-links" onclick="opentab('education')">Education</p>
+                    </div>
+                    <div class="tab-contents active-tab" id="skills">
+                        <ul>    
+                            <li><span>Java</span><br><i class="fa-solid fa-square" style="color: #4dff00"></i><i class="fa-solid fa-square" style="color: #4dff00"></i><i class="fa-solid fa-square" style="color: #4dff00"></i><i class="fa-solid fa-square" style="color: #4dff00"></i><i class="fa-solid fa-square"></i></li>
+                            <li><span>HTML</span><br><i class="fa-solid fa-square" style="color: #4dff00"></i><i class="fa-solid fa-square" style="color: #4dff00"></i><i class="fa-solid fa-square" style="color: #4dff00"></i><i class="fa-solid fa-square" style="color: #4dff00"></i><i class="fa-solid fa-square"></i></li>
+                            <li><span>CSS</span><br><i class="fa-solid fa-square" style="color: #4dff00"></i><i class="fa-solid fa-square" style="color: #4dff00"></i><i class="fa-solid fa-square" style="color: #4dff00"></i><i class="fa-solid fa-square"></i><i class="fa-solid fa-square"></i></li>
+                            <li><span>JavaScript</span><br><i class="fa-solid fa-square" style="color: #4dff00"></i><i class="fa-solid fa-square" style="color: #4dff00"></i><i class="fa-solid fa-square" style="color: #4dff00"></i><i class="fa-solid fa-square"></i><i class="fa-solid fa-square"></i></li>
+                            <li><span>Python</span><br><i class="fa-solid fa-square" style="color: #4dff00"></i><i class="fa-solid fa-square" style="color: #4dff00"></i><i class="fa-solid fa-square" style="color: #4dff00"></i><i class="fa-solid fa-square"></i><i class="fa-solid fa-square"></i></li>
+                        </ul>
+                    </div>
+                    <div class="tab-contents" id="work-exp">
+                        <ul>
+                            <li><span>Truly - Bot Developer (2023-Current)</span><br>Developed a Telegram Bot to engange a Gen Z audience.</li>
+                            <li><span>ProjectFoodTree - Game Developer (2021-2021)</span><br>Collaborated on an "Idle" game to raise awareness of nature preservation and hunger.</li>
+                            <li><span>Financial Transistor (2020-2020)</span><br>Top 10 Intern; Authored 10+ articles on Cryptocurrency, AI, and IoT.</li>
+                            <li><span>GUTS-Greater University Tutoring Service (2023-2023)</span><br>Tutored 20+ students in basic programming courses including DSA.</li>
+                        </ul>
+                    </div>
+                    <div class="tab-contents" id="hackathon">
+                        <ul>
+                            <li><span>Doctor-Doctor (Scratch)</span><br>An app that lets users locate hospitals near them based on their concerns.</li>
+                            <li><span>GunBarks (Unity)</span><br>Players embody a tree stump, in this third-person shooter, to raise environmental awareness.</li>
+                            <li><span>Chatbot (HTML, CSS, JS, Python, Flask)</span><br>A website where users chat with a bot to reduce loneliness during the Covid-19 pandemic.</li>
+                            <li><span>Clotherizer (HTML, CSS, JS)</span><br>A website where users can personalize clothes with LGBTQ+ themes, fostering support for the LGBTQ community.</li>
+                        </ul>
+                    </div>
+                    <div class="tab-contents" id="education">
+                        <ul>
+                            <li><span>University of Wisconsin - Madison (2022-Current)</span><br>Dean List Member of Fall 2023<br>Relevant courses: Data Structures, Algorithm Analysis and Design, Discrete Mathematics, Combinatorics, Linear Algebra</li>
+                            <li><span>Global Indian International School (2014-2022)</span><br>International Baccalaureate Diploma Holder<br> Subject Proficiency Awards: Computer Science, Mathematics, Physics</li>
+                            <li><span>External Courseworks</span><br>"Game Design with Visualization" - Michigan State University<br>"HTML, CSS, and Javascript for Web Developers" - John Hopkins University<br>"Python and Al workshop" - Singapore University of Technology and Design<br>"Basics of Computing and Programming" - New York University</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--work-->
+    <div id="work">
+        <div class="container">
+            <h1 class = "sub-title">Projects</h1>
+            <div class="work-list">
+                <div class="work">
+                    <img src="truly.jpg">
+                    <div class="layer">
+                        <h3>Truly Bot</h3>
+                        <p>A 24/7 Telegram bot for engaging a Gen Z audience.</p>
+                        <a href="https://t.me/trulycommunitychannel" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    </div>
+                </div>
+                <div class="work">
+                    <img src="fumark.jpg">
+                    <div class="layer">
+                        <h3>Project Fumark</h3>
+                        <p>An "Idle" game to raise awareness of nature preservation and hunger.</p>
+                        <a href="https://flowlab.io/game/play/1617927" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    </div>
+                </div>
+                <div class="work">
+                    <img src="ft.jpeg">
+                    <div class="layer">
+                        <h3>Financial Transistor</h3>
+                        <p>E-Newspaper that delivers the latest movements and changes in technology around the Globe</p>
+                        <a href="https://drive.google.com/drive/folders/12PmsAN-Fxk9N6jlYvrTKSqPou3M-TomK?usp=drive_link" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--contact-->
+    <div id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="contact-left">
+                    <h1 class="sub-title">Contact Me!</h1>
+                    <p><i class="fa-solid fa-paper-plane"></i> aman.jain030704@gmail.com</p>
+                    <p><i class="fa-solid fa-phone"></i> +1 (949) 532-9113</p>
+                    <div class="social-icons">
+                        <a href="https://www.instagram.com/ajmsd.7/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/in/aman-jain-b553031b4/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="https://github.com/AJMSD" target="_blank"><i class="fa-brands fa-square-github"></i></a>
+                        <a href="https://discord.gg/E7wApZFw" target="_blank"><i class="fa-brands fa-discord"></i></a>
+                    </div>
+                    <a href="AmanJain_Resume.pdf" download class="btn">Download Resume</a>
+                </div>
+                <div class="contact-right">
+                    <form name="submit-to-google-sheet">
+                        <input type="text" name="Name" placeholder="Your Name" required>
+                        <input type="text" name="E-mail" placeholder="Your Email" required>
+                        <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
+                        <button type="submit" class="btn">Submit</button>
+                    </form>
+                    <span id="accepted"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
