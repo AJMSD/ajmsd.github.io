@@ -12,20 +12,27 @@
     <!--home-->
     <div id = "home">
         <div class="container">
-            <nav>
-                <a href="#home"><img src = "images/logo.png" class = "logo"></a>
-                <ul id="side-menu">
-                    <li><a href="#home" onclick="closemenu()">Home</a></li>
-                    <li><a href="#about" onclick="closemenu()">About</a></li>
-                    <li><a href="#work" onclick="closemenu()">Work</a></li>
-                    <li><a href="#contact" onclick="closemenu()">Contact</a></li>
-                    <i class="fa-solid fa-xmark" onclick="closemenu()"></i>
-                </ul>
-                <i class="fa-solid fa-bars" onclick="openmenu()"></i>
+            <nav class="navbar">
+                <a href="#home" class="logo">
+                    <div class="logo-text">
+                        &lt;<span class="logo-name">ajmsd</span>&gt;
+                    </div>
+                </a>
+                <div class="nav-links">
+                    <ul id="side-menu">
+                        <li><a href="#about" onclick="closemenu()">About</a></li>
+                        <li><a href="#project" onclick="closemenu()">Projects</a></li>
+                        <li><a href="#contact" onclick="closemenu()">Contact</a></li>
+                        <li class="mobile-only"><i class="fa-solid fa-xmark close-btn" onclick="closemenu()"></i></li>
+                    </ul>
+                </div>
+                <div class="mobile-only">
+                    <i class="fa-solid fa-bars menu-btn" onclick="openmenu()"></i>
+                </div>
             </nav>
             <div class="header-text">
                 <p>Developer</p>
-                <h1>"Hi! I am <span>Aman Jain</span>!"</h1>
+                <h1 id="header-title">"Hi! I am <span class="accent">Aman Jain</span>!"</h1>
             </div>
         </div>
     </div>
@@ -34,49 +41,442 @@
     <div id="about">
         <div class="container">
             <div class="row">
-                <div class="about-col-1">
-                    <img src="" alt="Meticulously organizing code, yet living in chaotic exploration.">
-                </div>
-                <div class="about-col-2">
+                <div class="about-col-2" style="flex: 0 0 100%; max-width: 100%;">
                     <h1 class="sub-title">About Me!</h1>
                     <p>Hi! I am Aman Jain, an avid programmer. I guess you know that already since I made this website to prove that. However, I am so much more than just that. I love sports and it is my goal to have played every one of the sports that exist before the end of my life. Moreover, I love watching anime, reading books and writing my poems. If you'd like to check some out, you could always go over to my Instagram! That is all for now, but you can get to know me better over coffee or, perhaps, an interview?!</p>
                     <div class="tab-titles">
                         <p class="tab-links active-link" onclick="opentab('skills')">Skills</p>
                         <p class="tab-links" onclick="opentab('work-exp')">Work</p>
-                        <p class="tab-links" onclick="opentab('hackathon')">Hackathons</p>
+                        <p class="tab-links" onclick="opentab('research')">Research</p>
                         <p class="tab-links" onclick="opentab('education')">Education</p>
                     </div>
                     <div class="tab-contents active-tab" id="skills">
-                        <ul>    
-                            <li><span>Java</span><br><i class="fa-solid fa-square" style="color: #4dff00"></i><i class="fa-solid fa-square" style="color: #4dff00"></i><i class="fa-solid fa-square" style="color: #4dff00"></i><i class="fa-solid fa-square" style="color: #4dff00"></i><i class="fa-solid fa-square"></i></li>
-                            <li><span>HTML</span><br><i class="fa-solid fa-square" style="color: #4dff00"></i><i class="fa-solid fa-square" style="color: #4dff00"></i><i class="fa-solid fa-square" style="color: #4dff00"></i><i class="fa-solid fa-square" style="color: #4dff00"></i><i class="fa-solid fa-square"></i></li>
-                            <li><span>CSS</span><br><i class="fa-solid fa-square" style="color: #4dff00"></i><i class="fa-solid fa-square" style="color: #4dff00"></i><i class="fa-solid fa-square" style="color: #4dff00"></i><i class="fa-solid fa-square"></i><i class="fa-solid fa-square"></i></li>
-                            <li><span>JavaScript</span><br><i class="fa-solid fa-square" style="color: #4dff00"></i><i class="fa-solid fa-square" style="color: #4dff00"></i><i class="fa-solid fa-square" style="color: #4dff00"></i><i class="fa-solid fa-square"></i><i class="fa-solid fa-square"></i></li>
-                            <li><span>Python</span><br><i class="fa-solid fa-square" style="color: #4dff00"></i><i class="fa-solid fa-square" style="color: #4dff00"></i><i class="fa-solid fa-square" style="color: #4dff00"></i><i class="fa-solid fa-square"></i><i class="fa-solid fa-square"></i></li>
-                        </ul>
+                        <div class="skills-dashboard">
+                            <div class="skill-group">
+                                <div class="skill-group-header">
+                                    <i class="fa-solid fa-code"></i>
+                                    <h3>Programming Languages</h3>
+                                </div>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">Java</span>
+                                    <span class="skill-tag">Python</span>
+                                    <span class="skill-tag">JavaScript</span>
+                                    <span class="skill-tag">HTML</span>
+                                    <span class="skill-tag">CSS</span>
+                                    <span class="skill-tag">Bash</span>
+                                    <span class="skill-tag">Haskell</span>
+                                    <span class="skill-tag">C</span>
+                                    <span class="skill-tag">C++</span>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-group">
+                                <div class="skill-group-header">
+                                    <i class="fa-solid fa-globe"></i>
+                                    <h3>Web Development</h3>
+                                </div>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">React</span>
+                                    <span class="skill-tag">React Native</span>
+                                    <span class="skill-tag">Flask</span>
+                                    <span class="skill-tag">Next.js</span>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-group">
+                                <div class="skill-group-header">
+                                    <i class="fa-solid fa-toolbox"></i>
+                                    <h3>Tools & Technologies</h3>
+                                </div>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">MongoDB</span>
+                                    <span class="skill-tag">AWS</span>
+                                    <span class="skill-tag">Git</span>
+                                    <span class="skill-tag">GitHub</span>
+                                    <span class="skill-tag">SQL</span>
+                                    <span class="skill-tag">Docker</span>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-group">
+                                <div class="skill-group-header">
+                                    <i class="fa-solid fa-gamepad"></i>
+                                    <h3>Game Development</h3>
+                                </div>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">Unity</span>
+                                    <span class="skill-tag">Godot</span>
+                                    <span class="skill-tag">Blender</span>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-proficiency">
+                                <div class="skill-group-header">
+                                    <i class="fa-solid fa-chart-line"></i>
+                                    <h3>Top Skills Proficiency</h3>
+                                </div>
+                                <div class="skill-bars">
+                                    <div class="prof-skill-item">
+                                        <div class="prof-skill-info">
+                                            <span>Java</span>
+                                            <span class="percent">85%</span>
+                                        </div>
+                                        <div class="skill-bar">
+                                            <div class="skill-progress" style="width: 85%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="prof-skill-item">
+                                        <div class="prof-skill-info">
+                                            <span>HTML/CSS</span>
+                                            <span class="percent">90%</span>
+                                        </div>
+                                        <div class="skill-bar">
+                                            <div class="skill-progress" style="width: 90%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="prof-skill-item">
+                                        <div class="prof-skill-info">
+                                            <span>JavaScript</span>
+                                            <span class="percent">70%</span>
+                                        </div>
+                                        <div class="skill-bar">
+                                            <div class="skill-progress" style="width: 70%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="prof-skill-item">
+                                        <div class="prof-skill-info">
+                                            <span>C/C++</span>
+                                            <span class="percent">65%</span>
+                                        </div>
+                                        <div class="skill-bar">
+                                            <div class="skill-progress" style="width: 65%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="tab-contents" id="work-exp">
-                        <ul>
-                            <li><span>Truly - Bot Developer (2023-Current)</span><br>Developed a Telegram Bot to engange a Gen Z audience.</li>
-                            <li><span>ProjectFoodTree - Game Developer (2021-2021)</span><br>Collaborated on an "Idle" game to raise awareness of nature preservation and hunger.</li>
-                            <li><span>Financial Transistor (2020-2020)</span><br>Top 10 Intern; Authored 10+ articles on Cryptocurrency, AI, and IoT.</li>
-                            <li><span>GUTS-Greater University Tutoring Service (2023-2023)</span><br>Tutored 20+ students in basic programming courses including DSA.</li>
-                        </ul>
+                        <div class="experience-timeline">
+                            <div class="experience-item">
+                                <div class="experience-header">
+                                    <div class="experience-title">
+                                        <h3>Capital One</h3>
+                                        <p class="experience-role">Capstone Project - Product Owner</p>
+                                    </div>
+                                    <div class="experience-duration">
+                                        <div class="experience-duration-wrapper">
+                                            <span>Jan 2025 – Present</span>
+                                            <p class="experience-location">Madison, WI</p>
+                                        </div>
+                                        <div class="expand-icon">
+                                            <i class="fa-solid fa-chevron-down"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="experience-content">
+                                    <ul>
+                                        <li>Leading the development of an event-driven fraud detection system to identify and mitigate fraudulent transactions.</li>
+                                        <li>Designing and implementing a fraud detection algorithm leveraging AWS services, including SNS, SQS, Lambda, and DynamoDB, to automate real-time fraud alerts.</li>
+                                        <li>Integrating SMS notifications to promptly notify users of suspicious activity, allowing them to confirm or deny fraudulent transactions.</li>
+                                        <li>Managing the product backlog, prioritizing tasks, and facilitating sprint planning using Agile methodologies and Jira, ensuring smooth collaboration and timely feature delivery.</li>
+                                        <li>Focusing on cloud infrastructure and serverless computing, deploying the solution on AWS to enable scalable and accessible fraud detection.</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="experience-item">
+                                <div class="experience-header">
+                                    <div class="experience-title">
+                                        <h3>Wisconsin Union</h3>
+                                        <p class="experience-role">Building Manager</p>
+                                    </div>
+                                    <div class="experience-duration">
+                                        <div class="experience-duration-wrapper">
+                                            <span>May 2024 – Present</span>
+                                            <p class="experience-location">Madison, WI</p>
+                                        </div>
+                                        <div class="expand-icon">
+                                            <i class="fa-solid fa-chevron-down"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="experience-content">
+                                    <ul>
+                                        <li>Primary point of contact for building operations, handling urgent facility concerns and coordinating resolutions.</li>
+                                        <li>Designed and developed the Weather Rubric App, replacing an Excel-based system for outdoor event planning.</li>
+                                        <li>Integrated OpenWeather API for real-time weather data with manual and automated input modes.</li>
+                                        <li>Implemented US AQI Scale and wet-bulb temperature analysis for air quality and heat stress assessment.</li>
+                                        <li>Improved event decision efficiency, reducing errors and providing instant, data-driven recommendations.</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="experience-item">
+                                <div class="experience-header">
+                                    <div class="experience-title">
+                                        <h3>Computer Sciences Department UW-Madison</h3>
+                                        <p class="experience-role">Peer Mentor</p>
+                                    </div>
+                                    <div class="experience-duration">
+                                        <div class="experience-duration-wrapper">
+                                            <span>Sep 2024 – Present</span>
+                                            <p class="experience-location">Madison, WI</p>
+                                        </div>
+                                        <div class="expand-icon">
+                                            <i class="fa-solid fa-chevron-down"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="experience-content">
+                                    <ul>
+                                        <li>Assisted undergraduate students in understanding data structures and improving their coding skills.</li>
+                                        <li>Provided one-on-one and group support to help students debug and optimize their code.</li>
+                                        <li>Conducted review sessions and explained complex concepts to improve academic performance.</li>
+                                        <li>Fostered a collaborative learning environment to encourage problem-solving and critical thinking.</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="experience-item">
+                                <div class="experience-header">
+                                    <div class="experience-title">
+                                        <h3>Mphasis</h3>
+                                        <p class="experience-role">Software Developer Intern</p>
+                                    </div>
+                                    <div class="experience-duration">
+                                        <div class="experience-duration-wrapper">
+                                            <span>May 2024 – Aug 2024</span>
+                                            <p class="experience-location">India</p>
+                                        </div>
+                                        <div class="expand-icon">
+                                            <i class="fa-solid fa-chevron-down"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="experience-content">
+                                    <ul>
+                                        <li>Developed an airline ticket booking system using AWS services in an agile team environment.</li>
+                                        <li>Automated order creation based on passenger lists and preferences.</li>
+                                        <li>Integrated DynamoDB to optimize order retrieval and data storage.</li>
+                                        <li>Implemented cost calculation logic and supported multiple payment methods.</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="experience-item">
+                                <div class="experience-header">
+                                    <div class="experience-title">
+                                        <h3>Truly</h3>
+                                        <p class="experience-role">Bot Developer & Producer</p>
+                                    </div>
+                                    <div class="experience-duration">
+                                        <div class="experience-duration-wrapper">
+                                            <span>Jul 2023 – Jan 2024</span>
+                                            <p class="experience-location">Singapore</p>
+                                        </div>
+                                        <div class="expand-icon">
+                                            <i class="fa-solid fa-chevron-down"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="experience-content">
+                                    <ul>
+                                        <li>Led a team of developers, overseeing project direction, task delegation, and milestone tracking.</li>
+                                        <li>Created a 24/7 Telegram bot using Python, engaging a Gen Z audience with real-time responses.</li>
+                                        <li>Managed user data with MongoDB, conducting data analysis to enhance personalization.</li>
+                                        <li>Built FastAPI endpoints and optimized pyTelegramBotAPI interactions, increasing user engagement.</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="experience-item">
+                                <div class="experience-header">
+                                    <div class="experience-title">
+                                        <h3>Financial Transistor</h3>
+                                        <p class="experience-role">Technical Writer & Researcher</p>
+                                    </div>
+                                    <div class="experience-duration">
+                                        <div class="experience-duration-wrapper">
+                                            <span>Aug 2020 – Dec 2020</span>
+                                            <p class="experience-location">Singapore</p>
+                                        </div>
+                                        <div class="expand-icon">
+                                            <i class="fa-solid fa-chevron-down"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="experience-content">
+                                    <ul>
+                                        <li>Authored 10+ articles on Cryptocurrency, AI, and IoT topics.</li>
+                                        <li>Conducted primary research on AI and Big Data, shaping detailed technical content.</li>
+                                        <li>Proposed a startup idea for an AI-powered fitness app to tailor workout routines.</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
-                    <div class="tab-contents" id="hackathon">
-                        <ul>
-                            <li><span>Doctor-Doctor (Scratch)</span><br>An app that lets users locate hospitals near them based on their concerns.</li>
-                            <li><span>GunBarks (Unity)</span><br>Players embody a tree stump, in this third-person shooter, to raise environmental awareness.</li>
-                            <li><span>Chatbot (HTML, CSS, JS, Python, Flask)</span><br>A website where users chat with a bot to reduce loneliness during the Covid-19 pandemic.</li>
-                            <li><span>Clotherizer (HTML, CSS, JS)</span><br>A website where users can personalize clothes with LGBTQ+ themes, fostering support for the LGBTQ community.</li>
-                        </ul>
+                    
+                    <div class="tab-contents" id="research">
+                        <div class="research-timeline">
+                            <div class="research-item">
+                                <div class="research-header">
+                                    <div class="research-title">
+                                        <h3>Storage Research Trends Analysis, UW-Madison</h3>
+                                        <p class="research-role">Research Assistant | Advisor: Prof. Remzi Arpaci-Dusseau</p>
+                                    </div>
+                                    <div class="research-period">
+                                        <span class="research-date">Jan 2025 - Present</span>
+                                        <p class="research-location">Madison, WI</p>
+                                    </div>
+                                </div>
+                                <div class="research-content">
+                                    <div class="research-points">
+                                        <ul>
+                                            <li>Analyzing 10+ years of storage research trends using papers from multiple conferences.</li>
+                                            <li>Developing a data-driven categorization framework to analyze citation impact and emerging research trends.</li>
+                                            <li>Identifying gaps between academic research and industry challenges to provide insights for future advancements.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="research-item">
+                                <div class="research-header">
+                                    <div class="research-title">
+                                        <h3>Informatics Skunkworks, UW-Madison</h3>
+                                        <p class="research-role">Research Assistant</p>
+                                    </div>
+                                    <div class="research-period">
+                                        <span class="research-date">Jan 2024 – May 2024</span>
+                                        <p class="research-location">Madison, WI</p>
+                                    </div>
+                                </div>
+                                <div class="research-content">
+                                    <div class="research-points">
+                                        <ul>
+                                            <li>Investigated methods to extract scientific data from Large Language Models (LLMs).</li>
+                                            <li>Developed Python scripts for error analysis, including calculating error percentages and generating parity plots.</li>
+                                            <li>Conducted research on prompt engineering to enhance data extraction accuracy.</li>
+                                            <li>Validated LLM outputs by comparing them against established databases for material property accuracy.</li>
+                                            <li>Enhanced data extraction accuracy by 40% through prompt engineering.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                    
                     <div class="tab-contents" id="education">
-                        <ul>
-                            <li><span>University of Wisconsin - Madison (2022-Current)</span><br>Dean List Member of Fall 2023<br>Relevant courses: Data Structures, Algorithm Analysis and Design, Discrete Mathematics, Combinatorics, Linear Algebra</li>
-                            <li><span>Global Indian International School (2014-2022)</span><br>International Baccalaureate Diploma Holder<br> Subject Proficiency Awards: Computer Science, Mathematics, Physics</li>
-                            <li><span>External Courseworks</span><br>"Game Design with Visualization" - Michigan State University<br>"HTML, CSS, and Javascript for Web Developers" - John Hopkins University<br>"Python and Al workshop" - Singapore University of Technology and Design<br>"Basics of Computing and Programming" - New York University</li>
-                        </ul>
+                        <div class="education-timeline">
+                            <div class="education-item">
+                                <div class="education-header">
+                                    <div class="education-title">
+                                        <h3>University of Wisconsin - Madison</h3>
+                                        <p class="education-degree">BS, Computer Science</p>
+                                    </div>
+                                    <div class="education-period">
+                                        <span class="education-date">Sept 2022 - May 2025</span>
+                                        <p class="education-location">Madison, WI</p>
+                                    </div>
+                                </div>
+                                <div class="education-content">
+                                    <div class="education-achievements">
+                                        <div class="achievement">
+                                            <i class="fa-solid fa-award"></i>
+                                            <span>Dean's List: Fall 2023, Fall 2024</span>
+                                        </div>
+                                    </div>
+                                    <div class="education-courses">
+                                        <h4>Relevant Courses</h4>
+                                        <div class="course-tags">
+                                            <span class="course-tag">Data Structures</span>
+                                            <span class="course-tag">Algorithm Analysis and Design</span>
+                                            <span class="course-tag">Operating Systems</span>
+                                            <span class="course-tag">Software Engineering</span>
+                                            <span class="course-tag">Theory of Programming Languages</span>
+                                            <span class="course-tag">Computer Graphics</span>
+                                            <span class="course-tag">Artificial Intelligence</span>
+                                            <span class="course-tag">User Interfaces</span>
+                                            <span class="course-tag">Game Design</span>
+                                            <span class="course-tag">Discrete Mathematics</span>
+                                            <span class="course-tag">Combinatorics</span>
+                                            <span class="course-tag">Linear Algebra</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="education-item">
+                                <div class="education-header">
+                                    <div class="education-title">
+                                        <h3>Global Indian International School</h3>
+                                        <p class="education-degree">International Baccalaureate Diploma</p>
+                                    </div>
+                                    <div class="education-period">
+                                        <span class="education-date">July 2014 - July 2022</span>
+                                        <p class="education-location">Singapore</p>
+                                    </div>
+                                </div>
+                                <div class="education-content">
+                                    <div class="education-achievements">
+                                        <div class="achievement">
+                                            <i class="fa-solid fa-star"></i>
+                                            <span>12th Grade: 42/45 Points; Computer Science (A*)</span>
+                                        </div>
+                                        <div class="achievement">
+                                            <i class="fa-solid fa-star"></i>
+                                            <span>10th Grade: 7A*, 1A out of 8A*; Computer Science (A*)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="education-item">
+                                <div class="education-header">
+                                    <div class="education-title">
+                                        <h3>External Courses</h3>
+                                    </div>
+                                </div>
+                                <div class="education-content">
+                                    <div class="external-courses">
+                                        <div class="course-item">
+                                            <div class="course-icon">
+                                                <i class="fa-solid fa-gamepad"></i>
+                                            </div>
+                                            <div class="course-details">
+                                                <h4>Game Design with Visualization</h4>
+                                                <p class="course-provider">Michigan State University via Coursera</p>
+                                                <p class="course-description">Gained expertise in designing and developing engaging video games with a focus on visualization techniques and user experience.</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="course-item">
+                                            <div class="course-icon">
+                                                <i class="fa-solid fa-robot"></i>
+                                            </div>
+                                            <div class="course-details">
+                                                <h4>Python and AI Workshop</h4>
+                                                <p class="course-provider">Singapore University of Technology and Design</p>
+                                                <p class="course-description">Learned foundational concepts of Python programming and introductory AI techniques, applying AI models for real-world applications.</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="course-item">
+                                            <div class="course-icon">
+                                                <i class="fa-solid fa-laptop-code"></i>
+                                            </div>
+                                            <div class="course-details">
+                                                <h4>Basics of Computing and Programming</h4>
+                                                <p class="course-provider">New York University via edX</p>
+                                                <p class="course-description">Covered fundamental programming concepts and computational thinking, enhancing skills in coding, algorithm design, and debugging.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -84,32 +484,210 @@
     </div>
 
     <!--work-->
-    <div id="work">
+    <div id="project">
         <div class="container">
-            <h1 class = "sub-title">Projects</h1>
-            <div class="work-list">
-                <div class="work">
-                    <img src="images/truly.jpg">
-                    <div class="layer">
-                        <h3>Truly Bot</h3>
-                        <p>A 24/7 Telegram bot for engaging a Gen Z audience.</p>
-                        <a href="https://t.me/trulycommunitychannel" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            <h1 class="sub-title">Projects</h1>
+            <div class="bookshelf">
+                <div class="books">
+                    <div class="book">
+                        <div class="book-spine">
+                            <h3>Truly Bot</h3>
+                        </div>
+                        <div class="book-content">
+                            <div class="book-details">
+                                <h3>Truly Bot</h3>
+                                <p>A 24/7 Telegram bot for engaging a Gen Z audience.</p>
+                                <div class="tech-stack">
+                                    <span>Tech Stack:</span>
+                                    <ul>
+                                        <li>Python</li>
+                                        <li>Telegram API</li>
+                                        <li>Cloud Hosting</li>
+                                    </ul>
+                                </div>
+                                <a href="https://t.me/trulycommunitychannel" target="_blank" class="project-link">
+                                    View Project <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                </a>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="work">
-                    <img src="images/fumark.jpg">
-                    <div class="layer">
-                        <h3>Project Fumark</h3>
-                        <p>An "Idle" game to raise awareness of nature preservation and hunger.</p>
-                        <a href="https://flowlab.io/game/play/1617927" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    
+                    <div class="book">
+                        <div class="book-spine">
+                            <h3>Project Fumark</h3>
+                        </div>
+                        <div class="book-content">
+                            <div class="book-details">
+                                <h3>Project Fumark</h3>
+                                <p>An "Idle" game to raise awareness of nature preservation and hunger.</p>
+                                <div class="tech-stack">
+                                    <span>Tech Stack:</span>
+                                    <ul>
+                                        <li>JavaScript</li>
+                                        <li>Flowlab</li>
+                                        <li>Game Design</li>
+                                    </ul>
+                                </div>
+                                <a href="https://flowlab.io/game/play/1617927" target="_blank" class="project-link">
+                                    Play Game <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                </a>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="work">
-                    <img src="images/ft.jpeg">
-                    <div class="layer">
-                        <h3>Financial Transistor</h3>
-                        <p>E-Newspaper that delivers the latest movements and changes in technology around the Globe</p>
-                        <a href="https://drive.google.com/drive/folders/12PmsAN-Fxk9N6jlYvrTKSqPou3M-TomK?usp=drive_link" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    
+                    <div class="book">
+                        <div class="book-spine">
+                            <h3>Financial Transistor</h3>
+                        </div>
+                        <div class="book-content">
+                            <div class="book-details">
+                                <h3>Financial Transistor</h3>
+                                <p>E-Newspaper that delivers the latest movements and changes in technology around the Globe.</p>
+                                <div class="tech-stack">
+                                    <span>Tech Stack:</span>
+                                    <ul>
+                                        <li>Research</li>
+                                        <li>Content Writing</li>
+                                        <li>Digital Publishing</li>
+                                    </ul>
+                                </div>
+                                <a href="https://drive.google.com/drive/folders/12PmsAN-Fxk9N6jlYvrTKSqPou3M-TomK?usp=drive_link" target="_blank" class="project-link">
+                                    View Articles <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="book">
+                        <div class="book-spine">
+                            <h3>Weather Rubric</h3>
+                        </div>
+                        <div class="book-content">
+                            <div class="book-details">
+                                <h3>Weather Rubric App</h3>
+                                <p>An application for outdoor event planning that replaced an Excel-based system, providing real-time weather data analysis and recommendations.</p>
+                                <div class="tech-stack">
+                                    <span>Tech Stack:</span>
+                                    <ul>
+                                        <li>React</li>
+                                        <li>HTML/CSS</li>
+                                        <li>JavaScript</li>
+                                        <li>OpenWeather API</li>
+                                    </ul>
+                                </div>
+                                <a href="https://ajmsd.github.io/weather-rubric/" target="_blank" class="project-link">
+                                    Try App <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="book">
+                        <div class="book-spine">
+                            <h3>Asocial</h3>
+                        </div>
+                        <div class="book-content">
+                            <div class="book-details">
+                                <h3>Asocial</h3>
+                                <p>A web-based game where players take on the role of a social media algorithm, illustrating the negative impacts of doomscrolling.</p>
+                                <div class="tech-stack">
+                                    <span>Tech Stack:</span>
+                                    <ul>
+                                        <li>JavaScript</li>
+                                        <li>HTML/CSS</li>
+                                        <li>Game Design</li>
+                                        <li>Narrative Design</li>
+                                    </ul>
+                                </div>
+                                <a href="https://cxhuy.itch.io/asocial" target="_blank" class="project-link">
+                                    Play Game <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="book">
+                        <div class="book-spine">
+                            <h3>Pocket Saviour</h3>
+                        </div>
+                        <div class="book-content">
+                            <div class="book-details">
+                                <h3>Pocket Saviour</h3>
+                                <p>A hackathon project: An app that lets users locate hospitals near them based on their concerns.</p>
+                                <div class="tech-stack">
+                                    <span>Tech Stack:</span>
+                                    <ul>
+                                        <li>Scratch</li>
+                                        <li>UX Design</li>
+                                    </ul>
+                                </div>
+                                <span class="hackathon-label">Hackathon Project</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="book">
+                        <div class="book-spine">
+                            <h3>GunBarks</h3>
+                        </div>
+                        <div class="book-content">
+                            <div class="book-details">
+                                <h3>GunBarks</h3>
+                                <p>A hackathon project: Players embody a tree stump in this third-person shooter to raise environmental awareness.</p>
+                                <div class="tech-stack">
+                                    <span>Tech Stack:</span>
+                                    <ul>
+                                        <li>Unity</li>
+                                        <li>C#</li>
+                                        <li>3D Modeling</li>
+                                    </ul>
+                                </div>
+                                <span class="hackathon-label">Hackathon Project</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="book">
+                        <div class="book-spine">
+                            <h3>Chatbot</h3>
+                        </div>
+                        <div class="book-content">
+                            <div class="book-details">
+                                <h3>Chatbot</h3>
+                                <p>A hackathon project: A website where users chat with a bot to reduce loneliness during the Covid-19 pandemic.</p>
+                                <div class="tech-stack">
+                                    <span>Tech Stack:</span>
+                                    <ul>
+                                        <li>HTML/CSS</li>
+                                        <li>JavaScript</li>
+                                        <li>Python</li>
+                                        <li>Flask</li>
+                                    </ul>
+                                </div>
+                                <span class="hackathon-label">Hackathon Project</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="book">
+                        <div class="book-spine">
+                            <h3>Clotherizer</h3>
+                        </div>
+                        <div class="book-content">
+                            <div class="book-details">
+                                <h3>Clotherizer</h3>
+                                <p>A hackathon project: A website where users can personalize clothes with LGBTQ+ themes, fostering support for the LGBTQ community.</p>
+                                <div class="tech-stack">
+                                    <span>Tech Stack:</span>
+                                    <ul>
+                                        <li>HTML</li>
+                                        <li>CSS</li>
+                                        <li>JavaScript</li>
+                                    </ul>
+                                </div>
+                                <span class="hackathon-label">Hackathon Project</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -128,9 +706,9 @@
                         <a href="https://www.instagram.com/ajmsd.7/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
                         <a href="https://www.linkedin.com/in/aman-jain-b553031b4/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
                         <a href="https://github.com/AJMSD" target="_blank"><i class="fa-brands fa-square-github"></i></a>
-                        <a href="https://discord.gg/E7wApZFw" target="_blank"><i class="fa-brands fa-discord"></i></a>
+                        <a href="https://discord.com/users/574753888394149903" target="_blank"><i class="fa-brands fa-discord"></i></a>
                     </div>
-                    <a href="AmanJain_Resume.pdf" download class="btn">Download Resume</a>
+                    <a href="documents/AmanJain_Resume.pdf" download class="btn">Download Resume</a>
                 </div>
                 <div class="contact-right">
                     <form name="submit-to-google-sheet">
