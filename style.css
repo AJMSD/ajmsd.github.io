@@ -1053,7 +1053,8 @@ nav ul li a:hover::after {
 .book:nth-child(2) .book-spine,
 .book:nth-child(3) .book-spine,
 .book:nth-child(4) .book-spine,
-.book:nth-child(5) .book-spine {
+.book:nth-child(5) .book-spine,
+.book:nth-child(6) .book-spine {
     border-color: #7ED957;
 }
 
@@ -1061,23 +1062,23 @@ nav ul li a:hover::after {
     width: 500px;
 }
 
-.book:nth-child(-n+5):hover .book-spine {
+.book:nth-child(-n+6):hover .book-spine {
     border-color: #7ED957;
     box-shadow: 0 0 15px #7ED957;
 }
 
-.book:nth-child(-n+5):hover .book-content {
+.book:nth-child(-n+6):hover .book-content {
     width: 450px;
     border-color: #7ED957;
     box-shadow: 0 0 15px #7ED957;
 }
 
-.book:nth-child(n+6):hover .book-spine {
+.book:nth-child(n+7):hover .book-spine {
     border-color: #FF8C42;
     box-shadow: 0 0 15px #FF8C42;
 }
 
-.book:nth-child(n+6):hover .book-content {
+.book:nth-child(n+7):hover .book-content {
     width: 450px;
     border-color: #FF8C42;
     box-shadow: 0 0 15px #FF8C42;
@@ -1164,15 +1165,15 @@ nav ul li a:hover::after {
 }
 
 /* Orange theme for hackathon projects */
-.book:nth-child(n+6) .book-spine {
+.book:nth-child(n+7) .book-spine {
     border-color: #FF8C42;
 }
 
-.book:nth-child(n+6) .book-details h3 {
+.book:nth-child(n+7) .book-details h3 {
     color: #FF8C42;
 }
 
-.book:nth-child(n+6) .tech-stack span {
+.book:nth-child(n+7) .tech-stack span {
     color: #FF8C42;
 }
 
