@@ -50,30 +50,30 @@ function opentab(tabName){
     selectedTab.classList.add("active-tab");
     
     // Adjust the margin between About section and Projects section based on selected tab
-    const workSection = document.getElementById('work');
+    const workSection = document.getElementById('project');
     const aboutSection = document.getElementById('about');
     
     // Adjust spacing based on which tab is active
     switch(tabName) {
         case 'skills':
             workSection.style.marginTop = '50px';
-            aboutSection.style.paddingBottom = '50px';
+            aboutSection.style.paddingBottom = '0px';
             break;
         case 'education':
             workSection.style.marginTop = '30px';
-            aboutSection.style.paddingBottom = '30px';
+            aboutSection.style.paddingBottom = '0px';
             break;
         case 'research':
             workSection.style.marginTop = '40px';
-            aboutSection.style.paddingBottom = '40px';
+            aboutSection.style.paddingBottom = '0px';
             break;
         case 'work-exp':
             workSection.style.marginTop = '20px';
-            aboutSection.style.paddingBottom = '20px';
+            aboutSection.style.paddingBottom = '0px';
             break;
         default:
             workSection.style.marginTop = '50px';
-            aboutSection.style.paddingBottom = '50px';
+            aboutSection.style.paddingBottom = '0px';
     }
     
     // If the skills tab is activated, trigger progress bar animations
@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // No typewriter initialization needed
     
     // Set initial margins between sections
-    const workSection = document.getElementById('work');
+    const workSection = document.getElementById('project');
     const aboutSection = document.getElementById('about');
     
     // Check which tab is active initially
@@ -109,23 +109,23 @@ document.addEventListener('DOMContentLoaded', function() {
     switch(activeTab) {
         case 'skills':
             workSection.style.marginTop = '50px';
-            aboutSection.style.paddingBottom = '50px';
+            aboutSection.style.paddingBottom = '0px';
             break;
         case 'education':
             workSection.style.marginTop = '30px';
-            aboutSection.style.paddingBottom = '30px';
+            aboutSection.style.paddingBottom = '0px';
             break;
         case 'research':
             workSection.style.marginTop = '40px';
-            aboutSection.style.paddingBottom = '40px';
+            aboutSection.style.paddingBottom = '0px';
             break;
         case 'work-exp':
             workSection.style.marginTop = '20px';
-            aboutSection.style.paddingBottom = '20px';
+            aboutSection.style.paddingBottom = '0px';
             break;
         default:
             workSection.style.marginTop = '50px';
-            aboutSection.style.paddingBottom = '50px';
+            aboutSection.style.paddingBottom = '0px';
     }
     
     // Trigger skills animation if skills tab is active

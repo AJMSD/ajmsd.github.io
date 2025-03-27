@@ -840,12 +840,6 @@ nav ul li a:hover::after {
     border-radius: 4px 0 0 4px;
 }
 
-.skill-group:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2), 0 0 15px rgba(126, 217, 87, 0.1);
-    border: 1px solid rgba(126, 217, 87, 0.2);
-}
-
 .skill-group-header {
     display: flex;
     align-items: center;
