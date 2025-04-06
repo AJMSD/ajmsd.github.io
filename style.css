@@ -1395,6 +1395,8 @@ nav ul li a:hover::after {
 .social-icons a:hover{
     color: #7ED957;
     transform: translateY(-3px);
+    text-shadow: 0 0 10px rgba(126, 217, 87, 0.7), 0 0 20px rgba(126, 217, 87, 0.4);
+    filter: drop-shadow(0 0 5px rgba(126, 217, 87, 0.7));
 }
 
 .btn{
