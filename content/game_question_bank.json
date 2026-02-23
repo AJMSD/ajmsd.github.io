@@ -1,0 +1,58 @@
+[
+  {
+    "id": "q_origin_mcq_1",
+    "hub": "origin",
+    "difficulty": 1,
+    "type": "mcq_single",
+    "prompt": "Which data structure uses LIFO order?",
+    "answer": {
+      "choice_index": 2
+    },
+    "explanation": "A stack pops the most recently pushed item first.",
+    "tags": ["data-structures"],
+    "time_limit_s": 20,
+    "choices": ["Queue", "Heap", "Stack", "Graph"]
+  },
+  {
+    "id": "q_systems_short_1",
+    "hub": "systems",
+    "difficulty": 2,
+    "type": "short_text",
+    "prompt": "Name the protocol commonly used to transfer web pages.",
+    "answer": {
+      "accepted": ["http", "https"],
+      "normalize": "lower_trim"
+    },
+    "explanation": "HTTP is the base web transfer protocol; HTTPS is its secure form.",
+    "tags": ["networking"],
+    "time_limit_s": 20
+  },
+  {
+    "id": "q_research_fill_1",
+    "hub": "research",
+    "difficulty": 2,
+    "type": "fill_blank",
+    "prompt": "Complete the statement.",
+    "answer": {
+      "blanks": [["precision"], ["recall"]]
+    },
+    "explanation": "Precision and recall are standard retrieval metrics.",
+    "tags": ["ml"],
+    "time_limit_s": 25,
+    "text": "In information retrieval, ___ measures correctness and ___ measures coverage."
+  },
+  {
+    "id": "q_builder_code_1",
+    "hub": "builder",
+    "difficulty": 3,
+    "type": "code_fill",
+    "prompt": "Fill the missing return statement.",
+    "answer": {
+      "blanks": [["a + b", "b + a"]]
+    },
+    "explanation": "Either order is valid because addition is commutative.",
+    "tags": ["programming"],
+    "time_limit_s": 30,
+    "code": "function sum(a, b) { return /*__BLANK_1__*/; }"
+  }
+]

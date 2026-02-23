@@ -1,0 +1,25 @@
+[
+  {
+    "id": "education_university_example",
+    "title": "B.Tech in Computer Science",
+    "start_date": "2022-08",
+    "end_date": "2026-05",
+    "present": true,
+    "tags": ["computer-science", "academics"],
+    "tech_stack": ["Algorithms", "Data Structures", "Systems"],
+    "links": [
+      {
+        "type": "website",
+        "label": "University",
+        "url": "https://example.edu"
+      }
+    ],
+    "highlights": [
+      "Focused on backend systems, distributed design, and software engineering.",
+      "Completed project-led coursework with practical deployment experience."
+    ],
+    "priority": 1,
+    "coursework": ["Operating Systems", "Database Systems", "Computer Networks"],
+    "achievements": ["Dean's List", "Technical Club Lead"]
+  }
+]

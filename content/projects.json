@@ -1,0 +1,30 @@
+[
+  {
+    "id": "project_portfolio_revamp",
+    "title": "AJMSD Portfolio Revamp",
+    "start_date": "2026-02",
+    "end_date": "2026-02",
+    "present": true,
+    "tags": ["frontend", "backend", "ai"],
+    "tech_stack": ["Next.js", "TypeScript", "Tailwind CSS", "Gemini"],
+    "links": [
+      {
+        "type": "repo",
+        "label": "Repository",
+        "url": "https://example.com/repo"
+      }
+    ],
+    "highlights": [
+      "Designed a multi-mode portfolio architecture with shared content contracts.",
+      "Defined strict RAG and offline-first game behavior."
+    ],
+    "priority": 1,
+    "description": "Mode-based portfolio platform with web, terminal, and game experiences.",
+    "is_deployed": false,
+    "embed": {
+      "allowed": false
+    },
+    "thumbnail_url": "/images/project-placeholder.png",
+    "category_tags": ["portfolio", "fullstack", "interactive"]
+  }
+]

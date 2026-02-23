@@ -1,0 +1,10 @@
+{
+  "professional": "Engineer focused on product-minded software systems and reliable delivery.",
+  "casual": "I enjoy building interactive software, refining UX details, and learning by shipping.",
+  "skills_grouped": {
+    "Languages": ["TypeScript", "JavaScript", "Python", "Java"],
+    "Frameworks": ["Next.js", "React", "Node.js"],
+    "Data": ["PostgreSQL", "SQLite"],
+    "Tools": ["Git", "Docker", "Cloudflare"]
+  }
+}

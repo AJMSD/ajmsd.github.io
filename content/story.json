@@ -1,0 +1,14 @@
+[
+  {
+    "id": "story_origin",
+    "title": "Origin",
+    "body": "Started building software to solve practical student workflow problems.",
+    "priority": 1
+  },
+  {
+    "id": "story_builder",
+    "title": "Builder Phase",
+    "body": "Moved to full-stack systems, AI-assisted features, and game-like product experiences.",
+    "priority": 2
+  }
+]

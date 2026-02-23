@@ -1,0 +1,21 @@
+{
+  "social": [
+    {
+      "type": "social",
+      "label": "GitHub",
+      "url": "https://github.com/placeholder"
+    },
+    {
+      "type": "social",
+      "label": "LinkedIn",
+      "url": "https://linkedin.com/in/placeholder"
+    }
+  ],
+  "primary": [
+    {
+      "type": "resume",
+      "label": "Resume",
+      "url": "/api/resume"
+    }
+  ]
+}
