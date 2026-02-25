@@ -20,6 +20,7 @@ import {
   MaterializedKind,
   replaceKind
 } from "@/lib/db/materialized-content";
+import { logApiError, logApiStart, logApiSuccess } from "@/lib/logging";
 
 const IngestPayloadSchema = z.object({
   work: WorkFileSchema,
@@ -43,9 +44,24 @@ const IngestRequestSchema = z.discriminatedUnion("source", [
 ]);
 
 export async function POST(request: NextRequest): Promise<NextResponse> {
+  const startedAt = Date.now();
   const requestId = getRequestId(request.headers);
+  const route = "/api/admin/ingest";
+  const method = request.method;
+
+  logApiStart({ request_id: requestId, route, method });
+
   const auth = verifyAdminAuthorization(request);
   if (!auth.ok) {
+    logApiError({
+      request_id: requestId,
+      route,
+      method,
+      status: auth.status,
+      duration_ms: Date.now() - startedAt,
+      error_code: auth.errorCode,
+      error_message: auth.message
+    });
     return jsonError({
       status: auth.status,
       errorCode: auth.errorCode,
@@ -59,6 +75,15 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     const json = await request.json();
     parsedBody = IngestRequestSchema.parse(json);
   } catch (error) {
+    logApiError({
+      request_id: requestId,
+      route,
+      method,
+      status: 400,
+      duration_ms: Date.now() - startedAt,
+      error_code: "INVALID_INGEST_PAYLOAD",
+      error_message: error instanceof Error ? error.message : "Request body is invalid."
+    });
     return jsonError({
       status: 400,
       errorCode: "INVALID_INGEST_PAYLOAD",
@@ -91,7 +116,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       counts[kind] = records.length;
     }
 
-    return NextResponse.json(
+    const response = NextResponse.json(
       {
         ok: true,
         request_id: requestId,
@@ -104,7 +129,30 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
         }
       }
     );
+
+    logApiSuccess({
+      request_id: requestId,
+      route,
+      method,
+      status: response.status,
+      duration_ms: Date.now() - startedAt,
+      details: {
+        source: parsedBody.source,
+        ingested_kinds: Object.keys(counts).length
+      }
+    });
+
+    return response;
   } catch (error) {
+    logApiError({
+      request_id: requestId,
+      route,
+      method,
+      status: 500,
+      duration_ms: Date.now() - startedAt,
+      error_code: "INGEST_FAILED",
+      error_message: error instanceof Error ? error.message : "Failed to ingest canonical content."
+    });
     return jsonError({
       status: 500,
       errorCode: "INGEST_FAILED",
