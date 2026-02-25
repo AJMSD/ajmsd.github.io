@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { jsonError } from "@/lib/api/error";
 import { getRequestId } from "@/lib/api/request-id";
-import { verifyAdminAuthorization } from "@/lib/auth/admin";
+import { requireAdminAuthorization } from "@/lib/auth/admin";
 import { clearCanonicalContentCache, loadCanonicalContent } from "@/lib/content/load";
 import { toMaterializedPayload } from "@/lib/content/materialize";
 import {
@@ -51,7 +51,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
 
   logApiStart({ request_id: requestId, route, method });
 
-  const auth = verifyAdminAuthorization(request);
+  const auth = requireAdminAuthorization(request);
   if (!auth.ok) {
     logApiError({
       request_id: requestId,

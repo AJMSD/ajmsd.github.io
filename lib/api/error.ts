@@ -12,6 +12,7 @@ type ApiErrorOptions = {
   errorCode: string;
   message: string;
   requestId: string;
+  headers?: HeadersInit;
 };
 
 export function jsonError(options: ApiErrorOptions): NextResponse<ApiErrorBody> {
@@ -23,8 +24,12 @@ export function jsonError(options: ApiErrorOptions): NextResponse<ApiErrorBody> 
 
   return NextResponse.json(body, {
     status: options.status,
-    headers: {
-      [getRequestIdHeaderName()]: options.requestId
-    }
+    headers: withRequestIdHeader(options.requestId, options.headers)
   });
+}
+
+export function withRequestIdHeader(requestId: string, headers?: HeadersInit): Headers {
+  const responseHeaders = new Headers(headers);
+  responseHeaders.set(getRequestIdHeaderName(), requestId);
+  return responseHeaders;
 }
