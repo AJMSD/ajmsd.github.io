@@ -54,7 +54,11 @@ export default async function WebModePage() {
           educationCount={educationResult.data.length}
           socialLinks={socialLinks}
         />
-        <TabsSection />
+        <TabsSection
+          work={workResult.data}
+          research={projectsResult.data}
+          education={educationResult.data}
+        />
         <SkillsMarquee skillsGrouped={aboutResult.data.skills_grouped} />
         <ProjectsGrid projects={projectsResult.data} />
         <ContactSection links={canonicalContent.links} />
