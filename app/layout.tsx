@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import "@/lib/ui/fontawesome";
 
 export const metadata: Metadata = {
   title: "AJMSD Portfolio Revamp",
