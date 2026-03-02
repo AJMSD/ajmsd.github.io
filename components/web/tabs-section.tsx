@@ -36,7 +36,7 @@ export function TabsSection({ work, research, education }: TabsSectionProps) {
   return (
     <section
       id="experience"
-      className="space-y-5 rounded-3xl border border-white/10 bg-[#06243a]/80 p-6 backdrop-blur sm:p-8"
+      className="space-y-5 rounded-3xl border border-[var(--web-border-soft)] bg-[var(--web-panel)] p-6 backdrop-blur sm:p-8"
     >
       <SectionHeading
         eyebrow="Experience"
@@ -44,8 +44,8 @@ export function TabsSection({ work, research, education }: TabsSectionProps) {
         description="Work, research, and education records are grouped into tabbed panels. Resume download is wired through /api/resume."
       />
 
-      <div className="rounded-2xl border border-white/10 bg-[#051a2b]/75 p-4">
-        <div className="mb-4 flex flex-wrap items-center justify-between gap-3 border-b border-white/10 pb-3">
+      <div className="rounded-2xl border border-[var(--web-border-soft)] bg-[var(--web-panel-elevated)] p-4">
+        <div className="mb-4 flex flex-wrap items-center justify-between gap-3 border-b border-[var(--web-border-soft)] pb-3">
           <div className="flex flex-wrap gap-2">
             {tabConfig.map((tab) => {
               const isActive = tab.id === activeTab;
@@ -56,8 +56,8 @@ export function TabsSection({ work, research, education }: TabsSectionProps) {
                   onClick={() => setActiveTab(tab.id)}
                   className={`rounded-md border px-3 py-1.5 text-sm transition ${
                     isActive
-                      ? "border-cyan-200/55 bg-cyan-200/12 text-cyan-50"
-                      : "border-white/10 bg-white/5 text-[#b6c9d9] hover:border-white/30 hover:text-[#dff0ff]"
+                      ? "border-[var(--web-border-strong)] bg-[var(--web-accent-soft)] text-[var(--web-accent-strong)]"
+                      : "border-[var(--web-border-soft)] bg-black/10 text-[var(--web-text-subtle)] hover:border-[var(--web-border-strong)] hover:text-[var(--web-text)]"
                   }`}
                 >
                   {tab.label} ({tabCounts[tab.id]})
@@ -69,7 +69,7 @@ export function TabsSection({ work, research, education }: TabsSectionProps) {
           <a
             href="/api/resume"
             download
-            className="rounded-md border border-emerald-300/45 bg-emerald-300/10 px-3 py-1.5 text-xs font-medium uppercase tracking-[0.12em] text-emerald-100 transition hover:border-emerald-200/70 hover:bg-emerald-300/20"
+            className="rounded-md border border-[var(--web-border-strong)] bg-[var(--web-accent-soft)] px-3 py-1.5 text-xs font-medium uppercase tracking-[0.12em] text-[var(--web-accent-strong)] transition hover:border-[var(--web-accent)] hover:bg-[rgba(255,148,72,0.24)]"
           >
             Download Resume
           </a>

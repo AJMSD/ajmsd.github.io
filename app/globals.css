@@ -13,3 +13,23 @@ body {
   color: #fafafa;
   font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
 }
+
+.web-theme {
+  --web-bg: #1f1209;
+  --web-bg-overlay-a: rgba(255, 169, 77, 0.2);
+  --web-bg-overlay-b: rgba(255, 112, 40, 0.2);
+  --web-panel-nav: rgba(62, 33, 17, 0.76);
+  --web-panel-hero: rgba(71, 37, 18, 0.82);
+  --web-panel: rgba(56, 31, 17, 0.82);
+  --web-panel-elevated: rgba(42, 23, 13, 0.86);
+  --web-panel-strong: #27170e;
+  --web-text: #fff4e8;
+  --web-text-muted: #f4c9a7;
+  --web-text-subtle: #d4a47f;
+  --web-text-faint: #bc8d6b;
+  --web-border-soft: rgba(255, 220, 196, 0.16);
+  --web-border-strong: rgba(255, 185, 125, 0.45);
+  --web-accent: #ff9448;
+  --web-accent-soft: rgba(255, 148, 72, 0.14);
+  --web-accent-strong: #ffd3b0;
+}

@@ -10,7 +10,7 @@ export function SkillsMarquee({ skillsGrouped }: SkillsMarqueeProps) {
   return (
     <section
       id="skills"
-      className="space-y-5 rounded-3xl border border-white/10 bg-[#06243a]/80 p-6 backdrop-blur sm:p-8"
+      className="space-y-5 rounded-3xl border border-[var(--web-border-soft)] bg-[var(--web-panel)] p-6 backdrop-blur sm:p-8"
     >
       <SectionHeading
         eyebrow="Skills"
@@ -20,13 +20,18 @@ export function SkillsMarquee({ skillsGrouped }: SkillsMarqueeProps) {
 
       <div className="grid gap-3">
         {categories.map(([category, skills]) => (
-          <article key={category} className="rounded-xl border border-white/10 bg-[#051728]/75 p-3">
-            <p className="mb-2 text-xs uppercase tracking-[0.13em] text-cyan-100/85">{category}</p>
+          <article
+            key={category}
+            className="rounded-xl border border-[var(--web-border-soft)] bg-[var(--web-panel-elevated)] p-3"
+          >
+            <p className="mb-2 text-xs uppercase tracking-[0.13em] text-[var(--web-accent-strong)]">
+              {category}
+            </p>
             <div className="flex gap-2 overflow-x-auto pb-1">
               {skills.map((skill) => (
                 <span
                   key={skill}
-                  className="whitespace-nowrap rounded-full border border-white/20 bg-white/5 px-3 py-1 text-xs text-[#d8e4ef]"
+                  className="whitespace-nowrap rounded-full border border-[var(--web-border-soft)] bg-black/10 px-3 py-1 text-xs text-[var(--web-text-muted)]"
                 >
                   {skill}
                 </span>

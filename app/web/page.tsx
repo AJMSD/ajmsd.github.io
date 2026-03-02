@@ -37,10 +37,10 @@ export default async function WebModePage() {
 
   return (
     <main
-      className={`${webHeadingFont.variable} ${webMonoFont.variable} relative min-h-screen overflow-x-clip bg-[#041523] text-[#f8f3ea]`}
+      className={`${webHeadingFont.variable} ${webMonoFont.variable} web-theme relative min-h-screen overflow-x-clip bg-[var(--web-bg)] text-[var(--web-text)]`}
     >
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(80,216,255,0.2)_0%,_transparent_45%),radial-gradient(circle_at_80%_15%,_rgba(255,156,82,0.18)_0%,_transparent_50%)]" />
-      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(120deg,rgba(4,21,35,0.8)_0%,rgba(4,21,35,0.95)_50%,rgba(4,21,35,1)_100%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,var(--web-bg-overlay-a)_0%,transparent_44%),radial-gradient(circle_at_80%_15%,var(--web-bg-overlay-b)_0%,transparent_52%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(120deg,rgba(31,18,9,0.68)_0%,rgba(31,18,9,0.9)_52%,rgba(31,18,9,1)_100%)]" />
 
       <div
         className="relative mx-auto flex w-full max-w-6xl flex-col gap-12 px-4 pb-20 pt-6 sm:px-6 lg:px-8"

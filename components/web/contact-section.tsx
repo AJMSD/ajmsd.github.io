@@ -9,7 +9,7 @@ export function ContactSection({ links }: ContactSectionProps) {
   return (
     <section
       id="contact"
-      className="space-y-5 rounded-3xl border border-white/10 bg-[#06243a]/80 p-6 backdrop-blur sm:p-8"
+      className="space-y-5 rounded-3xl border border-[var(--web-border-soft)] bg-[var(--web-panel)] p-6 backdrop-blur sm:p-8"
     >
       <SectionHeading
         eyebrow="Contact"
@@ -18,8 +18,8 @@ export function ContactSection({ links }: ContactSectionProps) {
       />
 
       <div className="grid gap-6 lg:grid-cols-[1fr_1.2fr]">
-        <article className="space-y-3 rounded-2xl border border-white/10 bg-[#051728]/80 p-4">
-          <p className="text-sm leading-6 text-[#b7c7d6]">
+        <article className="space-y-3 rounded-2xl border border-[var(--web-border-soft)] bg-[var(--web-panel-elevated)] p-4">
+          <p className="text-sm leading-6 text-[var(--web-text-muted)]">
             Preferred channels for recruiter and collaborator outreach.
           </p>
           <ul className="space-y-2 text-sm">
@@ -27,7 +27,7 @@ export function ContactSection({ links }: ContactSectionProps) {
               <li key={`${link.label}-${link.url}`}>
                 <a
                   href={link.url}
-                  className="inline-flex rounded-md border border-white/15 px-3 py-1.5 text-[#d7e5f2] transition hover:border-cyan-200/70 hover:text-cyan-100"
+                  className="inline-flex rounded-md border border-[var(--web-border-soft)] px-3 py-1.5 text-[var(--web-text)] transition hover:border-[var(--web-border-strong)] hover:bg-[var(--web-accent-soft)] hover:text-[var(--web-accent-strong)]"
                 >
                   {link.label}
                 </a>
@@ -36,38 +36,38 @@ export function ContactSection({ links }: ContactSectionProps) {
           </ul>
         </article>
 
-        <form className="space-y-3 rounded-2xl border border-white/10 bg-[#051728]/80 p-4">
-          <label className="block space-y-1 text-sm text-[#d7e5f2]">
+        <form className="space-y-3 rounded-2xl border border-[var(--web-border-soft)] bg-[var(--web-panel-elevated)] p-4">
+          <label className="block space-y-1 text-sm text-[var(--web-text)]">
             <span>Name</span>
             <input
               type="text"
               placeholder="Your name"
               disabled
-              className="w-full rounded-md border border-white/15 bg-black/20 px-3 py-2 text-sm text-[#b7c7d6] placeholder:text-[#6a8397]"
+              className="w-full rounded-md border border-[var(--web-border-soft)] bg-black/20 px-3 py-2 text-sm text-[var(--web-text-muted)] placeholder:text-[var(--web-text-faint)]"
             />
           </label>
-          <label className="block space-y-1 text-sm text-[#d7e5f2]">
+          <label className="block space-y-1 text-sm text-[var(--web-text)]">
             <span>Email or handle</span>
             <input
               type="text"
               placeholder="you@company.com"
               disabled
-              className="w-full rounded-md border border-white/15 bg-black/20 px-3 py-2 text-sm text-[#b7c7d6] placeholder:text-[#6a8397]"
+              className="w-full rounded-md border border-[var(--web-border-soft)] bg-black/20 px-3 py-2 text-sm text-[var(--web-text-muted)] placeholder:text-[var(--web-text-faint)]"
             />
           </label>
-          <label className="block space-y-1 text-sm text-[#d7e5f2]">
+          <label className="block space-y-1 text-sm text-[var(--web-text)]">
             <span>Message</span>
             <textarea
               rows={4}
               placeholder="How can I help?"
               disabled
-              className="w-full rounded-md border border-white/15 bg-black/20 px-3 py-2 text-sm text-[#b7c7d6] placeholder:text-[#6a8397]"
+              className="w-full rounded-md border border-[var(--web-border-soft)] bg-black/20 px-3 py-2 text-sm text-[var(--web-text-muted)] placeholder:text-[var(--web-text-faint)]"
             />
           </label>
           <button
             type="button"
             disabled
-            className="rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-sm text-[#8fa5b7]"
+            className="rounded-lg border border-[var(--web-border-soft)] bg-black/15 px-4 py-2 text-sm text-[var(--web-text-faint)]"
           >
             Contact API integration pending
           </button>
