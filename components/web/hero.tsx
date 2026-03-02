@@ -1,3 +1,5 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { getSocialIcon } from "@/components/web/social-icons";
 import { AboutContent, LinkItem } from "@/components/web/types";
 
 type HeroSectionProps = {
@@ -41,16 +43,34 @@ export function HeroSection({
         </p>
         <p className="text-sm leading-7 text-[var(--web-text-subtle)] sm:text-base">{about.casual}</p>
 
-        <div className="flex flex-wrap gap-2">
-          {socialLinks.map((link) => (
-            <a
-              key={`${link.type}-${link.url}`}
-              href={link.url}
-              className="rounded-full border border-[var(--web-border-soft)] px-3 py-1.5 text-xs uppercase tracking-[0.12em] text-[var(--web-text)] transition hover:border-[var(--web-border-strong)] hover:bg-[var(--web-accent-soft)] hover:text-[var(--web-accent-strong)]"
-            >
-              {link.label}
-            </a>
-          ))}
+        <div className="flex flex-wrap items-center gap-4">
+          {socialLinks.map((link) => {
+            const icon = getSocialIcon(link.label);
+            if (icon) {
+              return (
+                <a
+                  key={`${link.type}-${link.url}`}
+                  href={link.url}
+                  aria-label={link.label}
+                  title={link.label}
+                  className="inline-flex items-center justify-center p-1 text-3xl text-[var(--web-text)] transition hover:text-[var(--web-accent-strong)]"
+                >
+                  <FontAwesomeIcon icon={icon} />
+                  <span className="sr-only">{link.label}</span>
+                </a>
+              );
+            }
+
+            return (
+              <a
+                key={`${link.type}-${link.url}`}
+                href={link.url}
+                className="rounded-full border border-[var(--web-border-soft)] px-3 py-1.5 text-xs uppercase tracking-[0.12em] text-[var(--web-text)] transition hover:border-[var(--web-border-strong)] hover:bg-[var(--web-accent-soft)] hover:text-[var(--web-accent-strong)]"
+              >
+                {link.label}
+              </a>
+            );
+          })}
         </div>
       </div>
 

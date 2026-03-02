@@ -1,15 +1,10 @@
-import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { SectionHeading } from "@/components/web/section-heading";
+import { getSocialIcon } from "@/components/web/social-icons";
 import { LinksContent } from "@/components/web/types";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 type ContactSectionProps = {
   links: LinksContent;
-};
-
-const socialIconByLabel: Record<string, typeof faGithub> = {
-  github: faGithub,
-  linkedin: faLinkedin
 };
 
 export function ContactSection({ links }: ContactSectionProps) {
@@ -30,19 +25,18 @@ export function ContactSection({ links }: ContactSectionProps) {
             Preferred channels for recruiter and collaborator outreach.
           </p>
           <ul className="space-y-2 text-sm">
-            {links.social.map((link) => (
-              <li key={`${link.label}-${link.url}`}>
-                {socialIconByLabel[link.label.toLowerCase()] ? (
+            {links.social.map((link) => {
+              const icon = getSocialIcon(link.label);
+              return (
+                <li key={`${link.label}-${link.url}`}>
+                  {icon ? (
                   <a
                     href={link.url}
                     aria-label={link.label}
                     title={link.label}
-                    className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-[var(--web-border-soft)] text-[var(--web-text)] transition hover:border-[var(--web-border-strong)] hover:bg-[var(--web-accent-soft)] hover:text-[var(--web-accent-strong)]"
+                    className="inline-flex items-center justify-center p-1 text-3xl text-[var(--web-text)] transition hover:text-[var(--web-accent-strong)]"
                   >
-                    <FontAwesomeIcon
-                      icon={socialIconByLabel[link.label.toLowerCase()]}
-                      className="text-lg"
-                    />
+                    <FontAwesomeIcon icon={icon} />
                     <span className="sr-only">{link.label}</span>
                   </a>
                 ) : (
@@ -52,9 +46,10 @@ export function ContactSection({ links }: ContactSectionProps) {
                   >
                     {link.label}
                   </a>
-                )}
-              </li>
-            ))}
+                  )}
+                </li>
+              );
+            })}
           </ul>
         </article>
 
