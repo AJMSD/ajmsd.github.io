@@ -1,8 +1,15 @@
+import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { SectionHeading } from "@/components/web/section-heading";
 import { LinksContent } from "@/components/web/types";
 
 type ContactSectionProps = {
   links: LinksContent;
+};
+
+const socialIconByLabel: Record<string, typeof faGithub> = {
+  github: faGithub,
+  linkedin: faLinkedin
 };
 
 export function ContactSection({ links }: ContactSectionProps) {
@@ -25,12 +32,27 @@ export function ContactSection({ links }: ContactSectionProps) {
           <ul className="space-y-2 text-sm">
             {links.social.map((link) => (
               <li key={`${link.label}-${link.url}`}>
-                <a
-                  href={link.url}
-                  className="inline-flex rounded-md border border-[var(--web-border-soft)] px-3 py-1.5 text-[var(--web-text)] transition hover:border-[var(--web-border-strong)] hover:bg-[var(--web-accent-soft)] hover:text-[var(--web-accent-strong)]"
-                >
-                  {link.label}
-                </a>
+                {socialIconByLabel[link.label.toLowerCase()] ? (
+                  <a
+                    href={link.url}
+                    aria-label={link.label}
+                    title={link.label}
+                    className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-[var(--web-border-soft)] text-[var(--web-text)] transition hover:border-[var(--web-border-strong)] hover:bg-[var(--web-accent-soft)] hover:text-[var(--web-accent-strong)]"
+                  >
+                    <FontAwesomeIcon
+                      icon={socialIconByLabel[link.label.toLowerCase()]}
+                      className="text-lg"
+                    />
+                    <span className="sr-only">{link.label}</span>
+                  </a>
+                ) : (
+                  <a
+                    href={link.url}
+                    className="inline-flex rounded-md border border-[var(--web-border-soft)] px-3 py-1.5 text-[var(--web-text)] transition hover:border-[var(--web-border-strong)] hover:bg-[var(--web-accent-soft)] hover:text-[var(--web-accent-strong)]"
+                  >
+                    {link.label}
+                  </a>
+                )}
               </li>
             ))}
           </ul>

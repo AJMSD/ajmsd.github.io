@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { EducationTab } from "@/components/web/tabs/education-tab";
 import { ResearchTab } from "@/components/web/tabs/research-tab";
 import { WorkTab } from "@/components/web/tabs/work-tab";
@@ -23,15 +23,6 @@ const tabConfig: Array<{ id: TabId; label: string }> = [
 
 export function TabsSection({ work, research, education }: TabsSectionProps) {
   const [activeTab, setActiveTab] = useState<TabId>("work");
-
-  const tabCounts = useMemo(
-    () => ({
-      work: work.length,
-      research: research.length,
-      education: education.length
-    }),
-    [education.length, research.length, work.length]
-  );
 
   return (
     <section
@@ -60,7 +51,7 @@ export function TabsSection({ work, research, education }: TabsSectionProps) {
                       : "border-[var(--web-border-soft)] bg-black/10 text-[var(--web-text-subtle)] hover:border-[var(--web-border-strong)] hover:text-[var(--web-text)]"
                   }`}
                 >
-                  {tab.label} ({tabCounts[tab.id]})
+                  {tab.label}
                 </button>
               );
             })}

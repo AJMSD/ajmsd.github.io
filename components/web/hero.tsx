@@ -33,9 +33,6 @@ export function HeroSection({
       className="grid gap-8 rounded-3xl border border-[var(--web-border-soft)] bg-[var(--web-panel-hero)] p-6 shadow-[0_18px_45px_rgba(0,0,0,0.3)] backdrop-blur sm:p-8 lg:grid-cols-[1.3fr_1fr]"
     >
       <div className="space-y-5">
-        <p className="inline-flex rounded-full border border-[var(--web-border-strong)] bg-[var(--web-accent-soft)] px-3 py-1 text-xs uppercase tracking-[0.16em] text-[var(--web-accent-strong)]">
-          Web Mode
-        </p>
         <h1 className="text-4xl font-semibold tracking-tight text-[var(--web-text)] sm:text-5xl">
           Aman Jain
         </h1>

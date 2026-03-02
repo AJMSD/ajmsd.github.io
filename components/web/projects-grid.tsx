@@ -40,7 +40,7 @@ export function ProjectsGrid({ projects }: ProjectsGridProps) {
             <p className="mt-2 line-clamp-3 text-sm leading-6 text-[var(--web-text-muted)]">
               {project.description}
             </p>
-            <div className="mt-3 flex flex-wrap gap-2">
+            <div className="mb-4 mt-3 flex flex-wrap gap-2">
               {project.category_tags.slice(0, 3).map((tag) => (
                 <span
                   key={tag}
