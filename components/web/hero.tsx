@@ -1,4 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { AvatarScrollScene } from "@/components/web/avatar-scroll-scene";
+import { HeroTyping } from "@/components/web/hero-typing";
 import { getSocialIcon } from "@/components/web/social-icons";
 import { AboutContent, LinkItem } from "@/components/web/types";
 
@@ -15,6 +17,7 @@ const heroStats = [
   { label: "Projects", key: "projects" },
   { label: "Education", key: "education" }
 ] as const;
+const HERO_TYPING_KEY = "web.hero.typing_seen.v1";
 
 export function HeroSection({
   about,
@@ -35,6 +38,11 @@ export function HeroSection({
       className="grid gap-8 rounded-3xl border border-[var(--web-border-soft)] bg-[var(--web-panel-hero)] p-6 shadow-[0_18px_45px_rgba(0,0,0,0.3)] backdrop-blur sm:p-8 lg:grid-cols-[1.3fr_1fr]"
     >
       <div className="space-y-5">
+        <HeroTyping
+          text="Hi! Welcome to my portfolio."
+          storageKey={HERO_TYPING_KEY}
+          className="text-sm uppercase tracking-[0.14em] text-[var(--web-accent-strong)]"
+        />
         <h1 className="text-4xl font-semibold tracking-tight text-[var(--web-text)] sm:text-5xl">
           Aman Jain
         </h1>
@@ -75,9 +83,7 @@ export function HeroSection({
       </div>
 
       <div className="space-y-4 rounded-2xl border border-[var(--web-border-soft)] bg-[var(--web-panel-elevated)] p-5">
-        <div className="mx-auto flex h-28 w-28 items-center justify-center rounded-full border border-[var(--web-border-strong)] bg-[radial-gradient(circle_at_35%_30%,rgba(255,214,171,0.85),rgba(146,78,36,0.88))] text-2xl font-semibold tracking-[0.15em] text-[#2f1809]">
-          AJ
-        </div>
+        <AvatarScrollScene />
         <div className="grid grid-cols-3 gap-2">
           {heroStats.map((stat) => (
             <article
