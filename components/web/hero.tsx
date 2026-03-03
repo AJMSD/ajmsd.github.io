@@ -34,7 +34,7 @@ export function HeroSection({
   return (
     <section
       id="hero"
-      className="grid gap-8 border-b border-[var(--web-border-soft)] px-4 py-14 sm:px-6 lg:grid-cols-[1.3fr_1fr] lg:px-10 lg:py-16"
+      className="grid min-h-[100svh] gap-8 border-b border-[var(--web-border-soft)] px-4 py-14 sm:px-6 lg:grid-cols-[1.3fr_1fr] lg:px-10 lg:py-16"
     >
       <div className="space-y-5">
         <HeroTyping

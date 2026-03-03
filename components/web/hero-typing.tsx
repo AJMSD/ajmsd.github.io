@@ -7,8 +7,8 @@ type HeroTypingProps = {
   className?: string;
 };
 
-const TYPING_DELAY_MS = 500;
-const TYPING_INTERVAL_MS = 70;
+const TYPING_DELAY_MS = 800;
+const TYPING_INTERVAL_MS = 90;
 
 export function HeroTyping({ text, className }: HeroTypingProps) {
   const [typedText, setTypedText] = useState("");
@@ -16,13 +16,6 @@ export function HeroTyping({ text, className }: HeroTypingProps) {
 
   useEffect(() => {
     if (typeof window === "undefined") {
-      return;
-    }
-
-    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (mediaQuery.matches) {
-      setTypedText(text);
-      setIsTyping(false);
       return;
     }
 

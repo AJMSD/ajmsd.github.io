@@ -27,7 +27,7 @@ export function TabsSection({ work, research, education }: TabsSectionProps) {
   return (
     <section
       id="experience"
-      className="space-y-5 border-b border-[var(--web-border-soft)] px-4 py-14 sm:px-6 lg:px-10 lg:py-16"
+      className="min-h-[100svh] space-y-5 border-b border-[var(--web-border-soft)] px-4 py-14 sm:px-6 lg:px-10 lg:py-16"
     >
       <SectionHeading
         eyebrow="Experience"

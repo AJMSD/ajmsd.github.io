@@ -34,10 +34,14 @@ export function MobileMenu({ id, isOpen, links, onClose, onNavigate }: MobileMen
           <button
             type="button"
             onClick={onClose}
-            className="rounded-md border border-[var(--web-border-soft)] px-2 py-1 text-xs text-[var(--web-text)] hover:border-[var(--web-border-strong)]"
+            className="inline-flex h-8 w-8 items-center justify-center rounded-md border border-[var(--web-border-soft)] text-[var(--web-text)] transition hover:border-[var(--web-border-strong)]"
             aria-label="Close mobile menu"
+            title="Close menu"
           >
-            Close
+            <span className="relative h-4 w-4" aria-hidden>
+              <span className="absolute left-0 top-1/2 h-[2px] w-4 -translate-y-1/2 rotate-45 bg-current" />
+              <span className="absolute left-0 top-1/2 h-[2px] w-4 -translate-y-1/2 -rotate-45 bg-current" />
+            </span>
           </button>
         </div>
 
