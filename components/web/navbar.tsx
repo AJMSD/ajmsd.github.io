@@ -68,7 +68,7 @@ export function WebNavbar() {
   };
 
   return (
-    <header className="sticky top-4 z-40">
+    <header className="sticky top-4 z-40 px-4 sm:px-6 lg:px-10">
       <nav
         className={`rounded-2xl border border-[var(--web-border-soft)] px-4 py-3 shadow-[0_16px_40px_rgba(0,0,0,0.28)] backdrop-blur-md transition-colors duration-200 ${
           isScrolled ? "bg-[var(--web-panel-nav)]/68" : "bg-[var(--web-panel-nav)]/96"

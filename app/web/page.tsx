@@ -42,10 +42,7 @@ export default async function WebModePage() {
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,var(--web-bg-overlay-a)_0%,transparent_44%),radial-gradient(circle_at_80%_15%,var(--web-bg-overlay-b)_0%,transparent_52%)]" />
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(120deg,rgba(31,18,9,0.68)_0%,rgba(31,18,9,0.9)_52%,rgba(31,18,9,1)_100%)]" />
 
-      <div
-        className="relative mx-auto flex w-full max-w-6xl flex-col gap-12 px-4 pb-20 pt-6 sm:px-6 lg:px-8"
-        style={{ fontFamily: "var(--font-web-heading)" }}
-      >
+      <div className="relative flex w-full flex-col pb-20 pt-6" style={{ fontFamily: "var(--font-web-heading)" }}>
         <WebNavbar />
         <HeroSection
           about={aboutResult.data}

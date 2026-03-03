@@ -17,7 +17,6 @@ const heroStats = [
   { label: "Projects", key: "projects" },
   { label: "Education", key: "education" }
 ] as const;
-const HERO_TYPING_KEY = "web.hero.typing_seen.v1";
 
 export function HeroSection({
   about,
@@ -35,12 +34,11 @@ export function HeroSection({
   return (
     <section
       id="hero"
-      className="grid gap-8 rounded-3xl border border-[var(--web-border-soft)] bg-[var(--web-panel-hero)] p-6 shadow-[0_18px_45px_rgba(0,0,0,0.3)] backdrop-blur sm:p-8 lg:grid-cols-[1.3fr_1fr]"
+      className="grid gap-8 border-b border-[var(--web-border-soft)] px-4 py-14 sm:px-6 lg:grid-cols-[1.3fr_1fr] lg:px-10 lg:py-16"
     >
       <div className="space-y-5">
         <HeroTyping
           text="Hi! Welcome to my portfolio."
-          storageKey={HERO_TYPING_KEY}
           className="text-sm uppercase tracking-[0.14em] text-[var(--web-accent-strong)]"
         />
         <h1 className="text-4xl font-semibold tracking-tight text-[var(--web-text)] sm:text-5xl">

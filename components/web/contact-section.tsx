@@ -11,7 +11,7 @@ export function ContactSection({ links }: ContactSectionProps) {
   return (
     <section
       id="contact"
-      className="space-y-5 rounded-3xl border border-[var(--web-border-soft)] bg-[var(--web-panel)] p-6 backdrop-blur sm:p-8"
+      className="space-y-5 px-4 py-14 sm:px-6 lg:px-10 lg:py-16"
     >
       <SectionHeading
         eyebrow="Contact"

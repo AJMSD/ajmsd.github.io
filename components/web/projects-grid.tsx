@@ -19,7 +19,7 @@ export function ProjectsGrid({ projects }: ProjectsGridProps) {
   return (
     <section
       id="projects"
-      className="space-y-5 rounded-3xl border border-[var(--web-border-soft)] bg-[var(--web-panel)] p-6 backdrop-blur sm:p-8"
+      className="space-y-5 border-b border-[var(--web-border-soft)] px-4 py-14 sm:px-6 lg:px-10 lg:py-16"
     >
       <SectionHeading
         eyebrow="Projects"

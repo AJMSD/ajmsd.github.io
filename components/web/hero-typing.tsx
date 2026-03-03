@@ -1,18 +1,16 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { getBooleanFlag, setBooleanFlag } from "@/lib/client/storage";
 
 type HeroTypingProps = {
   text: string;
-  storageKey: string;
   className?: string;
 };
 
-const TYPING_DELAY_MS = 200;
-const TYPING_INTERVAL_MS = 32;
+const TYPING_DELAY_MS = 500;
+const TYPING_INTERVAL_MS = 70;
 
-export function HeroTyping({ text, storageKey, className }: HeroTypingProps) {
+export function HeroTyping({ text, className }: HeroTypingProps) {
   const [typedText, setTypedText] = useState("");
   const [isTyping, setIsTyping] = useState(false);
 
@@ -22,10 +20,8 @@ export function HeroTyping({ text, storageKey, className }: HeroTypingProps) {
     }
 
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const hasSeenTyping = getBooleanFlag(storageKey);
-    if (hasSeenTyping || mediaQuery.matches) {
+    if (mediaQuery.matches) {
       setTypedText(text);
-      setBooleanFlag(storageKey, true);
       setIsTyping(false);
       return;
     }
@@ -45,7 +41,6 @@ export function HeroTyping({ text, storageKey, className }: HeroTypingProps) {
           if (intervalId !== null) {
             window.clearInterval(intervalId);
           }
-          setBooleanFlag(storageKey, true);
           setIsTyping(false);
         }
       }, TYPING_INTERVAL_MS);
@@ -57,7 +52,7 @@ export function HeroTyping({ text, storageKey, className }: HeroTypingProps) {
         window.clearInterval(intervalId);
       }
     };
-  }, [storageKey, text]);
+  }, [text]);
 
   return (
     <p className={className}>
