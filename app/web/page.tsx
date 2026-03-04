@@ -9,7 +9,7 @@ import {
   WebNavbar
 } from "@/components/web";
 import { loadCanonicalContent } from "@/lib/content/load";
-import { getAbout, getEducation, getProjects, getWork } from "@/lib/portfolio/repository";
+import { getAbout, getEducation, getLors, getProjects, getWork } from "@/lib/portfolio/repository";
 
 const webHeadingFont = Space_Grotesk({
   subsets: ["latin"],
@@ -24,12 +24,13 @@ const webMonoFont = IBM_Plex_Mono({
 });
 
 export default async function WebModePage() {
-  const [aboutResult, workResult, projectsResult, educationResult, canonicalContent] =
+  const [aboutResult, workResult, projectsResult, educationResult, lorsResult, canonicalContent] =
     await Promise.all([
       getAbout(),
       getWork(),
       getProjects(),
       getEducation(),
+      getLors(),
       loadCanonicalContent()
     ]);
 
@@ -50,6 +51,7 @@ export default async function WebModePage() {
           projectCount={projectsResult.data.length}
           educationCount={educationResult.data.length}
           socialLinks={socialLinks}
+          lors={lorsResult.data}
         />
         <TabsSection
           work={workResult.data}

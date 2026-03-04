@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import { SectionHeading } from "@/components/web/section-heading";
 
 type SkillsMarqueeProps = {
@@ -5,7 +8,23 @@ type SkillsMarqueeProps = {
 };
 
 export function SkillsMarquee({ skillsGrouped }: SkillsMarqueeProps) {
+  const [reducedMotion, setReducedMotion] = useState(false);
   const categories = Object.entries(skillsGrouped);
+
+  useEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const updateReducedMotion = () => setReducedMotion(mediaQuery.matches);
+    updateReducedMotion();
+
+    mediaQuery.addEventListener("change", updateReducedMotion);
+    return () => {
+      mediaQuery.removeEventListener("change", updateReducedMotion);
+    };
+  }, []);
 
   return (
     <section
@@ -15,7 +34,7 @@ export function SkillsMarquee({ skillsGrouped }: SkillsMarqueeProps) {
       <SectionHeading
         eyebrow="Skills"
         title="Stack Snapshot"
-        description="Skill groups are pulled from canonical content and rendered as horizontally scrollable lanes."
+        description="Skill groups are rendered as motion-safe marquee lanes with a reduced-motion fallback."
       />
 
       <div className="grid gap-3">
@@ -27,16 +46,34 @@ export function SkillsMarquee({ skillsGrouped }: SkillsMarqueeProps) {
             <p className="mb-2 text-xs uppercase tracking-[0.13em] text-[var(--web-accent-strong)]">
               {category}
             </p>
-            <div className="flex gap-2 overflow-x-auto pb-1">
-              {skills.map((skill) => (
-                <span
-                  key={skill}
-                  className="whitespace-nowrap rounded-full border border-[var(--web-border-soft)] bg-black/10 px-3 py-1 text-xs text-[var(--web-text-muted)]"
+            {reducedMotion ? (
+              <div className="flex flex-wrap gap-2">
+                {skills.map((skill) => (
+                  <span
+                    key={skill}
+                    className="whitespace-nowrap rounded-full border border-[var(--web-border-soft)] bg-black/10 px-3 py-1 text-xs text-[var(--web-text-muted)]"
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            ) : (
+              <div className="overflow-hidden pb-1">
+                <div
+                  className="web-marquee-track flex w-max gap-2 pr-2 hover:[animation-play-state:paused]"
+                  style={{ "--web-marquee-duration": `${Math.max(16, skills.length * 2.8)}s` } as Record<string, string>}
                 >
-                  {skill}
-                </span>
-              ))}
-            </div>
+                  {[...skills, ...skills].map((skill, index) => (
+                    <span
+                      key={`${category}-${skill}-${index}`}
+                      className="whitespace-nowrap rounded-full border border-[var(--web-border-soft)] bg-black/10 px-3 py-1 text-xs text-[var(--web-text-muted)]"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
           </article>
         ))}
       </div>

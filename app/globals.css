@@ -33,3 +33,25 @@ body {
   --web-accent-soft: rgba(255, 148, 72, 0.14);
   --web-accent-strong: #ffd3b0;
 }
+
+@keyframes web-marquee-scroll {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.web-marquee-track {
+  animation: web-marquee-scroll var(--web-marquee-duration, 20s) linear infinite;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .web-marquee-track {
+    animation: none;
+    transform: none;
+  }
+}

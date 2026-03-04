@@ -4,6 +4,7 @@ import {
   AboutFileSchema,
   EducationRecordSchema,
   LinksFileSchema,
+  LorQuoteSchema,
   ProjectRecordSchema,
   WorkRecordSchema
 } from "@/lib/schemas/content";
@@ -14,3 +15,4 @@ export type ProjectRecord = z.infer<typeof ProjectRecordSchema>;
 export type EducationRecord = z.infer<typeof EducationRecordSchema>;
 export type LinksContent = z.infer<typeof LinksFileSchema>;
 export type LinkItem = z.infer<typeof LinkSchema>;
+export type LorQuote = z.infer<typeof LorQuoteSchema>;
