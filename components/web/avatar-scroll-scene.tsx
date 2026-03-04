@@ -6,12 +6,18 @@ import avatarImage from "@/images/ajmsd.png";
 
 type AvatarScrollSceneProps = {
   className?: string;
+  fullHeight?: boolean;
+  showCaption?: boolean;
 };
 
 const SCROLL_RANGE_PX = 560;
 const SEATED_THRESHOLD = 0.58;
 
-export function AvatarScrollScene({ className }: AvatarScrollSceneProps) {
+export function AvatarScrollScene({
+  className,
+  fullHeight = false,
+  showCaption = true
+}: AvatarScrollSceneProps) {
   const [progress, setProgress] = useState(0);
   const [reducedMotion, setReducedMotion] = useState(false);
 
@@ -72,15 +78,19 @@ export function AvatarScrollScene({ className }: AvatarScrollSceneProps) {
 
   const isSeated = progress >= SEATED_THRESHOLD;
   const imageTransform = useMemo(() => {
-    const x = 54 - 108 * progress;
-    const scale = 1 - 0.08 * progress;
+    const x = fullHeight ? 72 - 148 * progress : 54 - 108 * progress;
+    const scale = fullHeight ? 1.08 - 0.16 * progress : 1 - 0.08 * progress;
     const rotate = 8 - 12 * progress;
     return `translateX(${x.toFixed(1)}px) scale(${scale.toFixed(3)}) rotate(${rotate.toFixed(1)}deg)`;
-  }, [progress]);
+  }, [fullHeight, progress]);
 
   return (
     <div className={`relative ${className ?? ""}`}>
-      <div className="relative h-52 overflow-hidden rounded-2xl border border-[var(--web-border-soft)] bg-[#26150c]/80">
+      <div
+        className={`relative overflow-hidden rounded-2xl border border-[var(--web-border-soft)] bg-[#26150c]/80 ${
+          fullHeight ? "h-full min-h-[58svh] lg:min-h-[68svh]" : "h-52"
+        }`}
+      >
         <div
           className="absolute inset-0 flex items-end justify-center transition-transform duration-300 ease-out"
           style={{ transform: imageTransform }}
@@ -88,10 +98,12 @@ export function AvatarScrollScene({ className }: AvatarScrollSceneProps) {
           <Image
             src={avatarImage}
             alt="Aman avatar"
-            width={270}
-            height={238}
+            width={fullHeight ? 620 : 270}
+            height={fullHeight ? 580 : 238}
             priority
-            className={`h-auto w-auto max-h-[220px] max-w-[250px] object-contain object-bottom drop-shadow-[0_8px_24px_rgba(0,0,0,0.35)] ${
+            className={`h-auto w-auto object-contain object-bottom drop-shadow-[0_8px_24px_rgba(0,0,0,0.35)] ${
+              fullHeight ? "max-h-[94%] max-w-[98%]" : "max-h-[220px] max-w-[250px]"
+            } ${
               isSeated ? "opacity-90 saturate-75" : "opacity-100"
             }`}
           />
@@ -110,12 +122,14 @@ export function AvatarScrollScene({ className }: AvatarScrollSceneProps) {
         ) : null}
       </div>
 
-      <p
-        className="mt-2 text-center text-[10px] uppercase tracking-[0.12em] text-[var(--web-text-faint)]"
-        style={{ fontFamily: "var(--font-web-mono)" }}
-      >
-        {isSeated ? "Seated typing state" : "Scroll to transition avatar"}
-      </p>
+      {showCaption ? (
+        <p
+          className="mt-2 text-center text-[10px] uppercase tracking-[0.12em] text-[var(--web-text-faint)]"
+          style={{ fontFamily: "var(--font-web-mono)" }}
+        >
+          {isSeated ? "Seated typing state" : "Scroll to transition avatar"}
+        </p>
+      ) : null}
     </div>
   );
 }

@@ -5,14 +5,17 @@ import { useEffect, useState } from "react";
 type HeroTypingProps = {
   text: string;
   className?: string;
+  startDelayMs?: number;
+  as?: "p" | "h1";
 };
 
 const TYPING_DELAY_MS = 800;
 const TYPING_INTERVAL_MS = 90;
 
-export function HeroTyping({ text, className }: HeroTypingProps) {
+export function HeroTyping({ text, className, startDelayMs, as = "p" }: HeroTypingProps) {
   const [typedText, setTypedText] = useState("");
   const [isTyping, setIsTyping] = useState(false);
+  const Component = as;
 
   useEffect(() => {
     if (typeof window === "undefined") {
@@ -37,7 +40,7 @@ export function HeroTyping({ text, className }: HeroTypingProps) {
           setIsTyping(false);
         }
       }, TYPING_INTERVAL_MS);
-    }, TYPING_DELAY_MS);
+    }, startDelayMs ?? TYPING_DELAY_MS);
 
     return () => {
       window.clearTimeout(startId);
@@ -45,10 +48,10 @@ export function HeroTyping({ text, className }: HeroTypingProps) {
         window.clearInterval(intervalId);
       }
     };
-  }, [text]);
+  }, [startDelayMs, text]);
 
   return (
-    <p className={className}>
+    <Component className={className}>
       <span>{typedText}</span>
       {isTyping ? (
         <span
@@ -56,6 +59,6 @@ export function HeroTyping({ text, className }: HeroTypingProps) {
           aria-hidden
         />
       ) : null}
-    </p>
+    </Component>
   );
 }
