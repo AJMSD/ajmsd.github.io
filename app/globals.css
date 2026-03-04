@@ -49,9 +49,11 @@ body {
   will-change: transform;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .web-marquee-track {
-    animation: none;
-    transform: none;
+@media (max-width: 767px) {
+  .web-theme *,
+  .web-theme *::before,
+  .web-theme *::after {
+    animation: none !important;
+    transition: none !important;
   }
 }

@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { MobileMenu } from "@/components/web/mobile-menu";
+import { usePhoneMotionPolicy } from "@/components/web/use-phone-motion-policy";
 
 const SECTION_LINKS = [
   { href: "#hero", label: "Overview" },
@@ -17,6 +18,7 @@ export function WebNavbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuButtonRef = useRef<HTMLButtonElement | null>(null);
   const wasOpenRef = useRef(false);
+  const isPhone = usePhoneMotionPolicy();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -61,7 +63,7 @@ export function WebNavbar() {
     setIsMenuOpen(false);
     const target = document.querySelector(href);
     if (target instanceof HTMLElement) {
-      target.scrollIntoView({ behavior: "smooth", block: "start" });
+      target.scrollIntoView({ behavior: isPhone ? "auto" : "smooth", block: "start" });
       return;
     }
     window.location.hash = href.replace("#", "");

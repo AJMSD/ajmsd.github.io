@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { LorQuote } from "@/components/web/types";
+import { usePhoneMotionPolicy } from "@/components/web/use-phone-motion-policy";
 
 type LorCarouselProps = {
   lors: LorQuote[];
@@ -44,7 +45,7 @@ const PLACEHOLDER_QUOTES: CarouselQuote[] = [
 
 export function LorCarousel({ lors, className }: LorCarouselProps) {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [reducedMotion, setReducedMotion] = useState(false);
+  const isPhone = usePhoneMotionPolicy();
 
   const approvedQuotes = useMemo(() => {
     return lors
@@ -61,26 +62,11 @@ export function LorCarousel({ lors, className }: LorCarouselProps) {
   const isPlaceholderMode = approvedQuotes.length === 0;
 
   useEffect(() => {
-    if (typeof window === "undefined") {
-      return;
-    }
-
-    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const updateReducedMotion = () => setReducedMotion(mediaQuery.matches);
-    updateReducedMotion();
-
-    mediaQuery.addEventListener("change", updateReducedMotion);
-    return () => {
-      mediaQuery.removeEventListener("change", updateReducedMotion);
-    };
-  }, []);
-
-  useEffect(() => {
     setActiveIndex(0);
   }, [quotes.length]);
 
   useEffect(() => {
-    if (reducedMotion || quotes.length <= 1) {
+    if (isPhone || quotes.length <= 1) {
       return;
     }
 
@@ -91,7 +77,7 @@ export function LorCarousel({ lors, className }: LorCarouselProps) {
     return () => {
       window.clearInterval(intervalId);
     };
-  }, [quotes.length, reducedMotion]);
+  }, [isPhone, quotes.length]);
 
   const activeQuote = quotes[activeIndex];
 
@@ -152,7 +138,7 @@ export function LorCarousel({ lors, className }: LorCarouselProps) {
           ))}
         </div>
         <p className="text-[10px] uppercase tracking-[0.12em] text-[var(--web-text-faint)]">
-          {reducedMotion ? "Reduced motion active" : "Auto-rotate"}
+          {isPhone ? "Static on mobile" : "Auto-rotate"}
         </p>
       </div>
 

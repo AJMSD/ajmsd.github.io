@@ -1,30 +1,15 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { SectionHeading } from "@/components/web/section-heading";
+import { usePhoneMotionPolicy } from "@/components/web/use-phone-motion-policy";
 
 type SkillsMarqueeProps = {
   skillsGrouped: Record<string, string[]>;
 };
 
 export function SkillsMarquee({ skillsGrouped }: SkillsMarqueeProps) {
-  const [reducedMotion, setReducedMotion] = useState(false);
+  const isPhone = usePhoneMotionPolicy();
   const categories = Object.entries(skillsGrouped);
-
-  useEffect(() => {
-    if (typeof window === "undefined") {
-      return;
-    }
-
-    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const updateReducedMotion = () => setReducedMotion(mediaQuery.matches);
-    updateReducedMotion();
-
-    mediaQuery.addEventListener("change", updateReducedMotion);
-    return () => {
-      mediaQuery.removeEventListener("change", updateReducedMotion);
-    };
-  }, []);
 
   return (
     <section
@@ -34,7 +19,7 @@ export function SkillsMarquee({ skillsGrouped }: SkillsMarqueeProps) {
       <SectionHeading
         eyebrow="Skills"
         title="Stack Snapshot"
-        description="Skill groups are rendered as motion-safe marquee lanes with a reduced-motion fallback."
+        description="Skill groups animate on desktop/tablet and stay static on mobile."
       />
 
       <div className="grid gap-3">
@@ -46,7 +31,7 @@ export function SkillsMarquee({ skillsGrouped }: SkillsMarqueeProps) {
             <p className="mb-2 text-xs uppercase tracking-[0.13em] text-[var(--web-accent-strong)]">
               {category}
             </p>
-            {reducedMotion ? (
+            {isPhone ? (
               <div className="flex flex-wrap gap-2">
                 {skills.map((skill) => (
                   <span
