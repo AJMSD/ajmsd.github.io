@@ -1,8 +1,12 @@
+"use client";
+
+import { useCallback, useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { AvatarScrollScene } from "@/components/web/avatar-scroll-scene";
 import { HeroTyping } from "@/components/web/hero-typing";
+import { LorCarousel } from "@/components/web/lor-carousel";
 import { getSocialIcon } from "@/components/web/social-icons";
-import { AboutContent, LinkItem } from "@/components/web/types";
+import { AboutContent, LinkItem, LorQuote } from "@/components/web/types";
 
 type HeroSectionProps = {
   about: AboutContent;
@@ -10,6 +14,7 @@ type HeroSectionProps = {
   projectCount: number;
   educationCount: number;
   socialLinks: LinkItem[];
+  lors: LorQuote[];
 };
 
 const heroStats = [
@@ -23,20 +28,61 @@ export function HeroSection({
   workCount,
   projectCount,
   educationCount,
-  socialLinks
+  socialLinks,
+  lors
 }: HeroSectionProps) {
   const greetingText = "Hi! Welcome to my portfolio.";
   const headingText = "Aman Jain";
   const typingIntervalMs = 90;
-  const typingStartDelayMs = 160;
-  const linePauseMs = 260;
+  const typingStartDelayMs = 140;
+  const linePauseMs = 220;
+  const lineCount = 4;
+  const [activeLineIndex, setActiveLineIndex] = useState(-1);
+  const pauseTimeoutRef = useRef<number | null>(null);
 
-  const headingDelayMs =
-    typingStartDelayMs + greetingText.length * typingIntervalMs + linePauseMs;
-  const professionalDelayMs =
-    headingDelayMs + headingText.length * typingIntervalMs + linePauseMs;
-  const casualDelayMs =
-    professionalDelayMs + about.professional.length * typingIntervalMs + linePauseMs;
+  useEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+
+    const timeoutId = window.setTimeout(() => {
+      setActiveLineIndex(0);
+    }, typingStartDelayMs);
+
+    return () => {
+      window.clearTimeout(timeoutId);
+    };
+  }, [typingStartDelayMs]);
+
+  useEffect(() => {
+    return () => {
+      if (pauseTimeoutRef.current !== null) {
+        window.clearTimeout(pauseTimeoutRef.current);
+      }
+    };
+  }, []);
+
+  const handleLineComplete = useCallback(
+    (lineIndex: number) => {
+      if (lineIndex !== activeLineIndex || typeof window === "undefined") {
+        return;
+      }
+
+      if (pauseTimeoutRef.current !== null) {
+        window.clearTimeout(pauseTimeoutRef.current);
+      }
+
+      pauseTimeoutRef.current = window.setTimeout(() => {
+        setActiveLineIndex((prev) => {
+          if (prev !== lineIndex) {
+            return prev;
+          }
+          return Math.min(lineCount, lineIndex + 1);
+        });
+      }, linePauseMs);
+    },
+    [activeLineIndex, lineCount, linePauseMs]
+  );
 
   const statValues: Record<(typeof heroStats)[number]["key"], number> = {
     work: workCount,
@@ -47,35 +93,49 @@ export function HeroSection({
   return (
     <section
       id="hero"
-      className="grid min-h-[calc(100svh-6.5rem)] items-stretch gap-6 px-4 py-8 sm:gap-8 sm:px-6 lg:grid-cols-[1fr_1fr] lg:px-10 lg:py-10"
+      className="grid min-h-[calc(100svh-6.5rem)] items-stretch gap-5 px-4 pb-8 pt-6 sm:gap-6 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:px-10 lg:pb-10 lg:pt-8"
     >
-      <div className="flex h-full min-h-[52svh] flex-col justify-between gap-6 lg:min-h-[56svh]">
-        <div className="space-y-7">
-          <div className="space-y-3">
+      <div className="flex h-full min-h-[46svh] flex-col gap-5 lg:min-h-[54svh]">
+        <div className="space-y-6">
+          <div className="space-y-2.5">
             <HeroTyping
               text={greetingText}
-              startDelayMs={typingStartDelayMs}
-              className="min-h-6 text-sm uppercase tracking-[0.14em] text-[var(--web-accent-strong)]"
+              isActive={activeLineIndex === 0}
+              isComplete={activeLineIndex > 0}
+              typingIntervalMs={typingIntervalMs}
+              onComplete={() => handleLineComplete(0)}
+              className="text-xs uppercase tracking-[0.16em] text-[var(--web-accent-strong)] sm:text-sm"
             />
             <HeroTyping
               as="h1"
               text={headingText}
-              startDelayMs={headingDelayMs}
-              className="min-h-[3.5rem] text-4xl font-semibold tracking-tight text-[var(--web-text)] sm:text-5xl"
+              isActive={activeLineIndex === 1}
+              isComplete={activeLineIndex > 1}
+              typingIntervalMs={typingIntervalMs}
+              onComplete={() => handleLineComplete(1)}
+              className="text-4xl font-semibold tracking-tight text-[var(--web-text)] sm:text-5xl"
             />
             <HeroTyping
               text={about.professional}
-              startDelayMs={professionalDelayMs}
-              className="min-h-[3.5rem] text-base leading-7 text-[var(--web-text-muted)] sm:text-lg"
+              isActive={activeLineIndex === 2}
+              isComplete={activeLineIndex > 2}
+              typingIntervalMs={typingIntervalMs}
+              onComplete={() => handleLineComplete(2)}
+              className="text-base leading-7 text-[var(--web-text-muted)] sm:text-lg"
             />
             <HeroTyping
               text={about.casual}
-              startDelayMs={casualDelayMs}
-              className="min-h-[3.5rem] text-sm leading-7 text-[var(--web-text-subtle)] sm:text-base"
+              isActive={activeLineIndex === 3}
+              isComplete={activeLineIndex > 3}
+              typingIntervalMs={typingIntervalMs}
+              onComplete={() => handleLineComplete(3)}
+              className="text-sm leading-7 text-[var(--web-text-subtle)] sm:text-base"
             />
           </div>
 
-          <div className="flex flex-wrap items-center gap-4">
+          <LorCarousel lors={lors} />
+
+          <div className="flex flex-wrap items-center gap-3 sm:gap-4">
             {socialLinks.map((link) => {
               const icon = getSocialIcon(link.label);
               if (icon) {
@@ -106,13 +166,15 @@ export function HeroSection({
           </div>
         </div>
 
-        <div className="flex flex-wrap gap-3">
+        <div className="mt-auto grid grid-cols-3 gap-2 sm:gap-3">
           {heroStats.map((stat) => (
             <article
               key={stat.key}
-              className="min-w-[112px] flex-1 rounded-xl border border-[var(--web-border-soft)] bg-[var(--web-panel-elevated)] px-3 py-2 text-center"
+              className="min-w-0 rounded-xl border border-[var(--web-border-soft)] bg-[var(--web-panel-elevated)] px-3 py-2 text-center"
             >
-              <p className="text-xl font-semibold text-[var(--web-text)]">{statValues[stat.key]}</p>
+              <p className="text-lg font-semibold text-[var(--web-text)] sm:text-xl">
+                {statValues[stat.key]}
+              </p>
               <p className="text-[11px] uppercase tracking-[0.12em] text-[var(--web-text-faint)]">
                 {stat.label}
               </p>
@@ -121,7 +183,7 @@ export function HeroSection({
         </div>
       </div>
 
-      <div className="h-full min-h-[52svh] overflow-hidden rounded-2xl border border-[var(--web-border-soft)] bg-[var(--web-panel-elevated)] lg:min-h-[56svh]">
+      <div className="h-full min-h-[46svh] overflow-hidden rounded-2xl border border-[var(--web-border-soft)] bg-[var(--web-panel-elevated)] lg:min-h-[54svh]">
         <AvatarScrollScene className="h-full" fullHeight showCaption={false} />
       </div>
     </section>

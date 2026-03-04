@@ -10,7 +10,7 @@ type AvatarScrollSceneProps = {
   showCaption?: boolean;
 };
 
-const SCROLL_RANGE_PX = 560;
+const SCROLL_RANGE_PX = 680;
 const SEATED_THRESHOLD = 0.58;
 
 export function AvatarScrollScene({
@@ -78,17 +78,19 @@ export function AvatarScrollScene({
 
   const isSeated = progress >= SEATED_THRESHOLD;
   const imageTransform = useMemo(() => {
-    const x = fullHeight ? 18 - 36 * progress : 54 - 108 * progress;
-    const scale = fullHeight ? 1.32 - 0.24 * progress : 1 - 0.08 * progress;
-    const rotate = fullHeight ? 4 - 6 * progress : 8 - 12 * progress;
-    return `translateX(${x.toFixed(1)}px) scale(${scale.toFixed(3)}) rotate(${rotate.toFixed(1)}deg)`;
+    const eased = 1 - Math.pow(1 - progress, 2);
+    const x = fullHeight ? lerp(26, -24, eased) : lerp(38, -44, eased);
+    const y = fullHeight ? lerp(10, -8, eased) : lerp(8, -6, eased);
+    const scale = fullHeight ? lerp(1.08, 0.96, eased) : lerp(1.02, 0.92, eased);
+    const rotate = fullHeight ? lerp(2, -3.5, eased) : lerp(5, -7, eased);
+    return `translate3d(${x.toFixed(1)}px, ${y.toFixed(1)}px, 0) scale(${scale.toFixed(3)}) rotate(${rotate.toFixed(1)}deg)`;
   }, [fullHeight, progress]);
 
   return (
     <div className={`relative ${className ?? ""}`}>
       <div
         className={`relative overflow-hidden bg-[#26150c]/80 ${
-          fullHeight ? "h-full min-h-[52svh] lg:min-h-[56svh]" : "h-52 rounded-2xl border border-[var(--web-border-soft)]"
+          fullHeight ? "h-full min-h-[46svh] lg:min-h-[54svh]" : "h-52 rounded-2xl border border-[var(--web-border-soft)]"
         }`}
       >
         <div
@@ -100,28 +102,16 @@ export function AvatarScrollScene({
           <Image
             src={avatarImage}
             alt="Aman avatar"
-            width={fullHeight ? 620 : 270}
-            height={fullHeight ? 580 : 238}
+            width={fullHeight ? 533 : 270}
+            height={fullHeight ? 468 : 238}
             priority
             className={`object-contain object-bottom drop-shadow-[0_8px_24px_rgba(0,0,0,0.35)] ${
-              fullHeight ? "h-[112%] w-auto max-h-none max-w-none" : "h-auto w-auto max-h-[220px] max-w-[250px]"
+              fullHeight ? "h-[98%] w-auto max-h-none max-w-none sm:h-[102%]" : "h-auto w-auto max-h-[220px] max-w-[250px]"
             } ${
-              isSeated ? "opacity-90 saturate-75" : "opacity-100"
+              isSeated ? "opacity-92 saturate-90" : "opacity-100"
             }`}
           />
         </div>
-
-        {isSeated ? (
-          <div className="absolute bottom-3 left-1/2 w-[78%] -translate-x-1/2 rounded-lg border border-[var(--web-border-soft)] bg-[#2f1b10]/85 px-3 py-2">
-            <div className="mb-1 h-1.5 w-full rounded-full bg-[var(--web-accent-soft)]" />
-            <p
-              className="text-[11px] uppercase tracking-[0.14em] text-[var(--web-accent-strong)]"
-              style={{ fontFamily: "var(--font-web-mono)" }}
-            >
-              typing...
-            </p>
-          </div>
-        ) : null}
       </div>
 
       {showCaption ? (
@@ -138,4 +128,8 @@ export function AvatarScrollScene({
 
 function clamp(value: number, min: number, max: number): number {
   return Math.min(Math.max(value, min), max);
+}
+
+function lerp(start: number, end: number, t: number): number {
+  return start + (end - start) * t;
 }
