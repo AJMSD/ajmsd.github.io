@@ -23,12 +23,13 @@ export function HeroTyping({ text, className, startDelayMs, as = "p" }: HeroTypi
     }
 
     setTypedText("");
-    setIsTyping(true);
+    setIsTyping(false);
 
     let index = 0;
     let intervalId: number | null = null;
 
     const startId = window.setTimeout(() => {
+      setIsTyping(true);
       intervalId = window.setInterval(() => {
         index += 1;
         setTypedText(text.slice(0, index));

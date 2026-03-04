@@ -25,6 +25,19 @@ export function HeroSection({
   educationCount,
   socialLinks
 }: HeroSectionProps) {
+  const greetingText = "Hi! Welcome to my portfolio.";
+  const headingText = "Aman Jain";
+  const typingIntervalMs = 90;
+  const typingStartDelayMs = 160;
+  const linePauseMs = 260;
+
+  const headingDelayMs =
+    typingStartDelayMs + greetingText.length * typingIntervalMs + linePauseMs;
+  const professionalDelayMs =
+    headingDelayMs + headingText.length * typingIntervalMs + linePauseMs;
+  const casualDelayMs =
+    professionalDelayMs + about.professional.length * typingIntervalMs + linePauseMs;
+
   const statValues: Record<(typeof heroStats)[number]["key"], number> = {
     work: workCount,
     projects: projectCount,
@@ -34,30 +47,30 @@ export function HeroSection({
   return (
     <section
       id="hero"
-      className="grid min-h-[100svh] gap-6 px-4 py-14 sm:gap-8 sm:px-6 lg:grid-cols-[1fr_1fr] lg:px-10 lg:py-16"
+      className="grid min-h-[calc(100svh-6.5rem)] items-stretch gap-6 px-4 py-8 sm:gap-8 sm:px-6 lg:grid-cols-[1fr_1fr] lg:px-10 lg:py-10"
     >
-      <div className="flex min-h-[65svh] flex-col justify-between gap-8 lg:min-h-[72svh]">
+      <div className="flex h-full min-h-[52svh] flex-col justify-between gap-6 lg:min-h-[56svh]">
         <div className="space-y-7">
           <div className="space-y-3">
             <HeroTyping
-              text="Hi! Welcome to my portfolio."
-              startDelayMs={150}
+              text={greetingText}
+              startDelayMs={typingStartDelayMs}
               className="min-h-6 text-sm uppercase tracking-[0.14em] text-[var(--web-accent-strong)]"
             />
             <HeroTyping
               as="h1"
-              text="Aman Jain"
-              startDelayMs={1250}
+              text={headingText}
+              startDelayMs={headingDelayMs}
               className="min-h-[3.5rem] text-4xl font-semibold tracking-tight text-[var(--web-text)] sm:text-5xl"
             />
             <HeroTyping
               text={about.professional}
-              startDelayMs={2450}
+              startDelayMs={professionalDelayMs}
               className="min-h-[3.5rem] text-base leading-7 text-[var(--web-text-muted)] sm:text-lg"
             />
             <HeroTyping
               text={about.casual}
-              startDelayMs={4300}
+              startDelayMs={casualDelayMs}
               className="min-h-[3.5rem] text-sm leading-7 text-[var(--web-text-subtle)] sm:text-base"
             />
           </div>
@@ -108,7 +121,7 @@ export function HeroSection({
         </div>
       </div>
 
-      <div className="min-h-[65svh] rounded-2xl border border-[var(--web-border-soft)] bg-[var(--web-panel-elevated)] p-3 sm:p-4 lg:min-h-[72svh]">
+      <div className="h-full min-h-[52svh] overflow-hidden rounded-2xl border border-[var(--web-border-soft)] bg-[var(--web-panel-elevated)] lg:min-h-[56svh]">
         <AvatarScrollScene className="h-full" fullHeight showCaption={false} />
       </div>
     </section>

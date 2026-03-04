@@ -78,21 +78,23 @@ export function AvatarScrollScene({
 
   const isSeated = progress >= SEATED_THRESHOLD;
   const imageTransform = useMemo(() => {
-    const x = fullHeight ? 72 - 148 * progress : 54 - 108 * progress;
-    const scale = fullHeight ? 1.08 - 0.16 * progress : 1 - 0.08 * progress;
-    const rotate = 8 - 12 * progress;
+    const x = fullHeight ? 18 - 36 * progress : 54 - 108 * progress;
+    const scale = fullHeight ? 1.32 - 0.24 * progress : 1 - 0.08 * progress;
+    const rotate = fullHeight ? 4 - 6 * progress : 8 - 12 * progress;
     return `translateX(${x.toFixed(1)}px) scale(${scale.toFixed(3)}) rotate(${rotate.toFixed(1)}deg)`;
   }, [fullHeight, progress]);
 
   return (
     <div className={`relative ${className ?? ""}`}>
       <div
-        className={`relative overflow-hidden rounded-2xl border border-[var(--web-border-soft)] bg-[#26150c]/80 ${
-          fullHeight ? "h-full min-h-[58svh] lg:min-h-[68svh]" : "h-52"
+        className={`relative overflow-hidden bg-[#26150c]/80 ${
+          fullHeight ? "h-full min-h-[52svh] lg:min-h-[56svh]" : "h-52 rounded-2xl border border-[var(--web-border-soft)]"
         }`}
       >
         <div
-          className="absolute inset-0 flex items-end justify-center transition-transform duration-300 ease-out"
+          className={`absolute inset-0 flex justify-center transition-transform duration-300 ease-out ${
+            fullHeight ? "items-center" : "items-end"
+          }`}
           style={{ transform: imageTransform }}
         >
           <Image
@@ -101,8 +103,8 @@ export function AvatarScrollScene({
             width={fullHeight ? 620 : 270}
             height={fullHeight ? 580 : 238}
             priority
-            className={`h-auto w-auto object-contain object-bottom drop-shadow-[0_8px_24px_rgba(0,0,0,0.35)] ${
-              fullHeight ? "max-h-[94%] max-w-[98%]" : "max-h-[220px] max-w-[250px]"
+            className={`object-contain object-bottom drop-shadow-[0_8px_24px_rgba(0,0,0,0.35)] ${
+              fullHeight ? "h-[112%] w-auto max-h-none max-w-none" : "h-auto w-auto max-h-[220px] max-w-[250px]"
             } ${
               isSeated ? "opacity-90 saturate-75" : "opacity-100"
             }`}
