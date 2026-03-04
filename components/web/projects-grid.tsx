@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { ProjectModal } from "@/components/web/project-modal";
 import { SectionHeading } from "@/components/web/section-heading";
 import { ProjectRecord } from "@/components/web/types";
 
@@ -10,11 +11,42 @@ type ProjectsGridProps = {
 
 export function ProjectsGrid({ projects }: ProjectsGridProps) {
   const [selectedProjectId, setSelectedProjectId] = useState<string | null>(null);
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
+
+  const categoryTagOptions = useMemo(() => {
+    return Array.from(
+      new Set(projects.flatMap((project) => project.category_tags.map((tag) => tag.trim())))
+    ).sort((a, b) => a.localeCompare(b));
+  }, [projects]);
+
+  const techTagOptions = useMemo(() => {
+    return Array.from(
+      new Set(projects.flatMap((project) => project.tech_stack.map((tag) => tag.trim())))
+    ).sort((a, b) => a.localeCompare(b));
+  }, [projects]);
 
   const selectedProject = useMemo(
     () => projects.find((project) => project.id === selectedProjectId) ?? null,
     [projects, selectedProjectId]
   );
+
+  const visibleProjects = useMemo(() => {
+    if (selectedTags.length === 0) {
+      return projects;
+    }
+
+    const normalizedSelectedTags = new Set(selectedTags.map((tag) => tag.toLowerCase()));
+    return projects.filter((project) => {
+      const combinedTags = [...project.category_tags, ...project.tech_stack];
+      return combinedTags.some((tag) => normalizedSelectedTags.has(tag.toLowerCase()));
+    });
+  }, [projects, selectedTags]);
+
+  const toggleTag = (tag: string) => {
+    setSelectedTags((prev) =>
+      prev.includes(tag) ? prev.filter((existingTag) => existingTag !== tag) : [...prev, tag]
+    );
+  };
 
   return (
     <section
@@ -27,8 +59,73 @@ export function ProjectsGrid({ projects }: ProjectsGridProps) {
         description="Project cards are data-driven now, with a lightweight details modal to establish interaction flow before filtering and embed support."
       />
 
-      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-        {projects.map((project) => (
+      <div className="space-y-3 rounded-xl border border-[var(--web-border-soft)] bg-[var(--web-panel-elevated)] p-4">
+        <div className="flex flex-wrap items-center gap-2">
+          <p className="text-xs uppercase tracking-[0.13em] text-[var(--web-accent-strong)]">
+            Category Filters
+          </p>
+          {categoryTagOptions.map((tag) => {
+            const selected = selectedTags.includes(tag);
+            return (
+              <button
+                key={`category-${tag}`}
+                type="button"
+                onClick={() => toggleTag(tag)}
+                aria-pressed={selected}
+                className={`rounded-full border px-2.5 py-1 text-[11px] uppercase tracking-[0.1em] transition ${
+                  selected
+                    ? "border-[var(--web-border-strong)] bg-[var(--web-accent-soft)] text-[var(--web-accent-strong)]"
+                    : "border-[var(--web-border-soft)] bg-black/10 text-[var(--web-text-subtle)] hover:border-[var(--web-border-strong)]"
+                }`}
+              >
+                {tag}
+              </button>
+            );
+          })}
+        </div>
+
+        <div className="flex flex-wrap items-center gap-2">
+          <p className="text-xs uppercase tracking-[0.13em] text-[var(--web-accent-strong)]">
+            Tech Filters
+          </p>
+          {techTagOptions.map((tag) => {
+            const selected = selectedTags.includes(tag);
+            return (
+              <button
+                key={`tech-${tag}`}
+                type="button"
+                onClick={() => toggleTag(tag)}
+                aria-pressed={selected}
+                className={`rounded-full border px-2.5 py-1 text-[11px] uppercase tracking-[0.1em] transition ${
+                  selected
+                    ? "border-[var(--web-border-strong)] bg-[var(--web-accent-soft)] text-[var(--web-accent-strong)]"
+                    : "border-[var(--web-border-soft)] bg-black/10 text-[var(--web-text-subtle)] hover:border-[var(--web-border-strong)]"
+                }`}
+              >
+                {tag}
+              </button>
+            );
+          })}
+          {selectedTags.length > 0 ? (
+            <button
+              type="button"
+              onClick={() => setSelectedTags([])}
+              className="rounded-full border border-[var(--web-border-soft)] px-2.5 py-1 text-[11px] uppercase tracking-[0.1em] text-[var(--web-text-muted)] transition hover:border-[var(--web-border-strong)] hover:text-[var(--web-accent-strong)]"
+            >
+              Clear Filters
+            </button>
+          ) : null}
+        </div>
+      </div>
+
+      {visibleProjects.length === 0 ? (
+        <p className="rounded-xl border border-[var(--web-border-soft)] bg-[var(--web-panel-elevated)] px-4 py-3 text-sm text-[var(--web-text-muted)]">
+          No projects match the selected filters.
+        </p>
+      ) : null}
+
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
+        {visibleProjects.map((project) => (
           <article
             key={project.id}
             className="flex h-full flex-col rounded-2xl border border-[var(--web-border-soft)] bg-[var(--web-panel-elevated)] p-4"
@@ -62,28 +159,7 @@ export function ProjectsGrid({ projects }: ProjectsGridProps) {
       </div>
 
       {selectedProject ? (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4 py-10">
-          <div className="w-full max-w-xl rounded-2xl border border-[var(--web-border-soft)] bg-[var(--web-panel-strong)] p-5 shadow-[0_24px_60px_rgba(0,0,0,0.45)]">
-            <div className="flex items-start justify-between gap-4">
-              <h3 className="text-xl font-semibold text-[var(--web-text)]">{selectedProject.title}</h3>
-              <button
-                type="button"
-                onClick={() => setSelectedProjectId(null)}
-                className="rounded-md border border-[var(--web-border-soft)] px-2 py-1 text-xs text-[var(--web-text)] hover:border-[var(--web-border-strong)]"
-              >
-                Close
-              </button>
-            </div>
-            <p className="mt-3 text-sm leading-6 text-[var(--web-text-muted)]">
-              {selectedProject.description}
-            </p>
-            <ul className="mt-4 list-disc space-y-1 pl-5 text-sm text-[var(--web-text-subtle)]">
-              {selectedProject.highlights.slice(0, 3).map((highlight) => (
-                <li key={highlight}>{highlight}</li>
-              ))}
-            </ul>
-          </div>
-        </div>
+        <ProjectModal project={selectedProject} onClose={() => setSelectedProjectId(null)} />
       ) : null}
     </section>
   );
