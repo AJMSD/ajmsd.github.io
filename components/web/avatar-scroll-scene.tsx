@@ -76,7 +76,7 @@ export function AvatarScrollScene({
       x: fullHeight ? lerp(26, -24, eased) : lerp(38, -44, eased),
       y: fullHeight ? lerp(10, -8, eased) : lerp(8, -6, eased),
       scale: fullHeight ? lerp(1.08, 0.96, eased) : lerp(1.02, 0.92, eased),
-      rotate: fullHeight ? lerp(2, -3.5, eased) : lerp(5, -7, eased)
+      rotate: fullHeight ? lerp(0, -3.5, eased) : lerp(0, -7, eased)
     };
   }, [fullHeight, isPhone, progress]);
 
