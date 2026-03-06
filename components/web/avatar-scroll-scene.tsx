@@ -61,23 +61,36 @@ export function AvatarScrollScene({
   }, [isPhone]);
 
   const isSeated = !isPhone && progress >= SEATED_THRESHOLD;
-  const imageTransform = useMemo(() => {
+  const transformValues = useMemo(() => {
     if (isPhone) {
-      return "translate3d(0px, 0px, 0) scale(1) rotate(0deg)";
+      return {
+        x: 0,
+        y: 0,
+        scale: 1,
+        rotate: 0
+      };
     }
 
     const eased = 1 - Math.pow(1 - progress, 2);
-    const x = fullHeight ? lerp(26, -24, eased) : lerp(38, -44, eased);
-    const y = fullHeight ? lerp(10, -8, eased) : lerp(8, -6, eased);
-    const scale = fullHeight ? lerp(1.08, 0.96, eased) : lerp(1.02, 0.92, eased);
-    const rotate = fullHeight ? lerp(2, -3.5, eased) : lerp(5, -7, eased);
-    return `translate3d(${x.toFixed(1)}px, ${y.toFixed(1)}px, 0) scale(${scale.toFixed(3)}) rotate(${rotate.toFixed(1)}deg)`;
+    return {
+      x: fullHeight ? lerp(26, -24, eased) : lerp(38, -44, eased),
+      y: fullHeight ? lerp(10, -8, eased) : lerp(8, -6, eased),
+      scale: fullHeight ? lerp(1.08, 0.96, eased) : lerp(1.02, 0.92, eased),
+      rotate: fullHeight ? lerp(2, -3.5, eased) : lerp(5, -7, eased)
+    };
   }, [fullHeight, isPhone, progress]);
+
+  const baseTransform = `translate3d(${transformValues.x.toFixed(1)}px, ${transformValues.y.toFixed(1)}px, 0) scale(${transformValues.scale.toFixed(3)}) rotate(${transformValues.rotate.toFixed(1)}deg)`;
+  const waveTransform = `translate3d(-26px, ${transformValues.y.toFixed(1)}px, 0) scale(${transformValues.scale.toFixed(3)}) rotate(${transformValues.rotate.toFixed(1)}deg)`;
+  const activeTransform = showWaveVideo && !videoUnavailable ? waveTransform : baseTransform;
+  const mediaBaseClass = "object-contain object-bottom drop-shadow-[0_8px_24px_rgba(0,0,0,0.35)]";
+  const waveMediaSizeClass = fullHeight ? "h-1/2 w-auto max-h-none max-w-none" : "h-auto w-auto max-h-[220px] max-w-[250px]";
+  const stillMediaSizeClass = fullHeight ? "h-[98%] w-auto max-h-none max-w-none sm:h-[102%]" : "h-auto w-auto max-h-[220px] max-w-[250px]";
 
   return (
     <div className={`relative ${className ?? ""}`}>
       <div
-        className={`relative overflow-hidden bg-[#26150c]/80 ${
+        className={`relative overflow-hidden bg-[#c96918] ${
           fullHeight ? "h-full min-h-[46svh] lg:min-h-[54svh]" : "h-52 rounded-2xl border border-[var(--web-border-soft)]"
         }`}
       >
@@ -85,7 +98,7 @@ export function AvatarScrollScene({
           className={`absolute inset-0 flex justify-center ${fullHeight ? "items-center" : "items-end"} ${
             isPhone ? "" : "transition-transform duration-300 ease-out"
           }`}
-          style={{ transform: imageTransform }}
+          style={{ transform: activeTransform }}
         >
           {showWaveVideo && !videoUnavailable ? (
             <video
@@ -96,9 +109,7 @@ export function AvatarScrollScene({
               preload="metadata"
               poster="/media/waving-poster.jpg"
               onError={() => setVideoUnavailable(true)}
-              className={`object-contain object-bottom drop-shadow-[0_8px_24px_rgba(0,0,0,0.35)] ${
-                fullHeight ? "h-[98%] w-auto max-h-none max-w-none sm:h-[102%]" : "h-auto w-auto max-h-[220px] max-w-[250px]"
-              }`}
+              className={`${mediaBaseClass} ${waveMediaSizeClass}`}
               aria-label="Waving avatar animation"
             >
               <source src="/media/waving.webm" type="video/webm" />
@@ -111,9 +122,7 @@ export function AvatarScrollScene({
               width={fullHeight ? 533 : 270}
               height={fullHeight ? 468 : 238}
               priority
-              className={`object-contain object-bottom drop-shadow-[0_8px_24px_rgba(0,0,0,0.35)] ${
-                fullHeight ? "h-[98%] w-auto max-h-none max-w-none sm:h-[102%]" : "h-auto w-auto max-h-[220px] max-w-[250px]"
-              } ${
+              className={`${mediaBaseClass} ${stillMediaSizeClass} ${
                 isSeated ? "opacity-92 saturate-90" : "opacity-100"
               }`}
             />
